@@ -8,6 +8,7 @@ var config = {
     idBtnPlay: "btn-play",
 
     classMainContainer: "main",
+    classPanel: 'panel',
 
     classScore: "score",
     classTime: "time",
