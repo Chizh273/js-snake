@@ -1,0 +1,61 @@
+body {
+    background-color: #999;
+}
+
+.main {
+    margin: 0 auto;
+}
+
+.matrix {
+    margin: 30px;
+    float: left;
+    border-top: 1px solid #FFF;
+    border-left: 1px solid #FFF;
+    background-color: #999;
+}
+
+.matrix div {
+    float: left;
+    width: 19px;
+    height: 19px;
+    border-bottom: 1px solid #FFF;
+    border-right: 1px solid #FFF;
+}
+
+.matrix .snake {
+    background-color: red;
+}
+
+.matrix .fruit {
+    background-color: #00ff00;
+}
+
+.matrix .poison {
+    background-color: #000000;
+}
+
+.panel {
+    margin: 30px;
+    float: left;
+    width: 450px;
+    background-color: #999;
+}
+
+.panel input.form-control {
+    width: 150px;
+    float: left;
+    margin: 10px;
+}
+
+.panel .slider {
+    float: left;
+    width: 300px;
+    margin: 20px;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.res {
+    margin: 10px;
+}
