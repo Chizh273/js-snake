@@ -122,16 +122,18 @@ var GameSnake = function (container, config) {
         self.keyDown(e);
     });
 
-    $("#" + self.config.slider).slider({
-        max: -50,      
-        min: -1000,
+    self.prepare = function () {
+        $("#" + self.config.slider).slider({
+            max: -50,
+            min: -1000,
 
-        slide: function (event, ui) {
-            self.spead = $(this).slider("value") * (-1);
-            clearInterval(self.intervalMove);
-            self.start();
-        }
-    });
+            slide: function (event, ui) {
+                self.spead = $(this).slider("value") * (-1);
+                clearInterval(self.intervalMove);
+                self.start();
+            }
+        });
+    };
 
     self.constructor();
 };
