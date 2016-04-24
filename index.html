@@ -1,46 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Game</title>
-	<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/style.css">
-	<script src="js/jquery-2.2.1.js"></script>
-	<script src="js/jquery-ui.js"></script>
+    <meta charset="UTF-8">
+    <title>Game</title>
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-2.2.1.js"></script>
+    <script src="js/jquery-ui.js"></script>
 </head>
 <body>
 <div class="main">
-	<div class="matrix" id="snake1"></div>
-	<div class="panel">
-		<div class="row">
-			<div class="slider">
-				Speed snake <span id="speed"></span>
-				<div id="slider"></div>
-			</div>
-		</div>
-		<div class="row">
-			<input type="text" class="form-control" placeholder="Rows" id="row" value="20">
-			<input type="text" class="form-control" placeholder="Cols" id="col" value="20">
-		</div>
-		<div class="row res" style="display: none;">
-			<p>Your score: <span class="score"></span></p>
-			<p>Your time: <span class="time"></span></p>
-		</div>
-		<div class="row" style="padding: 10px;">
-			<button id="btn-start" class="btn btn-default">Start</button>
-			<button id="btn-play" style="display: none;" class="btn btn-default">Play</button>
-			<button id="btn-pause" style="display: none;" class="btn btn-default">Pause</button>
-		</div>
-	</div>
+    <div class="panel">
+        <div class="row res" style="display: none">
+            <span>Your score: <span class="score">0</span></span>
+            <span>Your time: <span class="time">0</span></span>
+        </div>
+    </div>
+
+    <div class="matrix" id="snake1"></div>
+
+    <div class="setting">
+        <div class="row" style="padding: 10px;">
+            <button id="btn-start" class="btn btn-default"
+                    style="font-size: 24px; width: 350px; display: inline-block;">New game
+            </button>
+        </div>
+        <div class="row">
+            <div class="slider">
+                Speed snake <span id="speed"></span>
+                <div id="slider"></div>
+            </div>
+        </div>
+        <div class="row">
+            <lable>
+                Rows:
+                <input type="text" class="form-control" placeholder="Rows" id="row" value="20">
+            </lable>
+            <lable>
+                Cols:
+                <input type="text" class="form-control" placeholder="Cols" id="col" value="20">
+            </lable>
+        </div>
+    </div>
+</div>
+
 </div>
 
 <div class="alert" title="Game over" style="display: none">
-	<h1>Game over</h1>
-	<p>Score: <span class="score"></span></p>
-	<p>Time: <span class="time"></span></p>
-	<input type="text" placeholder="Enter to your name" id="name">
+    <h1>Game over</h1>
+    <p>Score: <span class="score"></span></p>
+    <p>Time: <span class="time"></span></p>
+    <input type="text" placeholder="Enter to your name" id="name">
 </div>
+
+<div class="game-over" style="display: none;">
+    <button class="btn btn-link" style="color: #2b2b2b; font-size: 36px;" id="btn-start-again">Start again</button>
+    <button class="btn btn-link" style="color: #2b2b2b; font-size: 36px;" id="btn-setting">Setting</button>
+</div>
+
 <script src="js/config.js"></script>
 <script src="js/matrix.js"></script>
 <script src="js/snake.js"></script>

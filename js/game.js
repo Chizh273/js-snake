@@ -62,8 +62,7 @@ var GameSnake = function (container, config) {
 
         if (self.status) {
             self.status = false;
-            $('#' + self.config.idCol).show();
-            $('#' + self.config.idRow).show();
+            $("." + self.config.classGameOver).show(100);
 
             $('#' + self.config.idBtnStart).show().html('New game');
 
@@ -72,11 +71,13 @@ var GameSnake = function (container, config) {
             $('.' + self.config.classAlert).dialog({
                     modal: true,
                     buttons: {
-                        Ok: function () {
+                        "Start again": function () {
+                            $("#" + self.config.idBtnStartAgain).click();
                             $(this).dialog('close');
                         },
-                        "Send score": function () {
-                            //$.ajax();
+                        "Setting": function () {
+                            $("#" + self.config.idBtnSetting).click();
+                            $(this).dialog('close');
                         }
                     }
                 }
@@ -108,7 +109,7 @@ var GameSnake = function (container, config) {
 
     self.setFruit = function () {
         var position = {x: getRandom(1, col), y: getRandom(1, row)};
-        while (self.matrix.checkCellClass(position, self.config.classSnake)) {
+        while (self.matrix.checkCellClass(position, self.config.classSnake) || self.matrix.checkCellClass(position, self.config.classFruit)) {
             position = {
                 x: getRandom(1, col),
                 y: getRandom(1, row)
@@ -122,18 +123,6 @@ var GameSnake = function (container, config) {
         self.keyDown(e);
     });
 
-    self.prepare = function () {
-        $("#" + self.config.slider).slider({
-            max: -50,
-            min: -1000,
-
-            slide: function (event, ui) {
-                self.spead = $(this).slider("value") * (-1);
-                clearInterval(self.intervalMove);
-                self.start();
-            }
-        });
-    };
 
     self.constructor();
 };

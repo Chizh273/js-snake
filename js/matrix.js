@@ -15,9 +15,7 @@ var Matrix = function (col, row, $container, $mainContainer, config) {
             height: row * 19 + 1
         }
         self.$mainContainer.css({
-            width: container.width + parseInt($('.' + self.config.classPanel).css('width')) +
-                                     parseInt($('.' + self.config.classPanel).css('margin')) * 2 +
-                                     parseInt(self.$container.css('margin')) * 2
+            width: container.width + parseInt(self.$container.css('margin')) * 2
         });
 
         self.$container.css(container);

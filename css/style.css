@@ -1,5 +1,5 @@
 body {
-    background-color: #999;
+    background-color: #00b400;
 }
 
 .main {
@@ -7,27 +7,27 @@ body {
 }
 
 .matrix {
-    margin: 30px;
+    margin:  0 30px 30px;
     float: left;
-    border-top: 1px solid #FFF;
-    border-left: 1px solid #FFF;
-    background-color: #999;
+    border-top: 1px solid #CCC;
+    border-left: 1px solid #CCC;
+    background-color: #00b400;
 }
 
 .matrix div {
     float: left;
     width: 19px;
     height: 19px;
-    border-bottom: 1px solid #FFF;
-    border-right: 1px solid #FFF;
+    border-bottom: 1px solid #CCC;
+    border-right: 1px solid #CCC;
 }
 
 .matrix .snake {
-    background-color: red;
+    background-color: #ffffff;
 }
 
 .matrix .fruit {
-    background-color: #00ff00;
+    background-color: #e8e8e8;
 }
 
 .matrix .poison {
@@ -35,27 +35,44 @@ body {
 }
 
 .panel {
-    margin: 30px;
-    float: left;
-    width: 450px;
-    background-color: #999;
+    margin: auto;
+    width: 400px;
+    background-color: #00b400;
+    text-align: center;
 }
 
-.panel input.form-control {
-    width: 150px;
-    float: left;
-    margin: 10px;
-}
-
-.panel .slider {
-    float: left;
-    width: 300px;
-    margin: 20px;
-    font-size: 18px;
-    font-style: italic;
-    font-weight: bold;
+.panel span{
+    margin-left: 10px;
 }
 
 .res {
     margin: 10px;
+}
+
+.setting {
+    margin: auto;
+    padding: 30px;
+    width: 400px;
+    height: 300px;
+}
+
+.setting .row {
+    margin-top: 20px;
+}
+
+*{
+    font-family: "Algerian";
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.game-over{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom:0;
+    height: 100px;
+    background-color: #285F28;
+    text-align: center;
+    padding: 25px;
 }

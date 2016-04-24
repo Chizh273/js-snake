@@ -19,6 +19,11 @@ var config = {
 
     classAlert: "alert",
 
-    slider: "slider"
+    slider: "slider",
+    setting: "setting",
 
+    idBtnStartAgain: "btn-start-again",
+    idBtnSetting: "btn-setting",
+
+    classGameOver: "game-over"
 };
