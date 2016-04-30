@@ -3,12 +3,8 @@ var GameSnake = function (container, config) {
     var self = this;
 
     self.config = config;
-
-    var col = $("#" + self.config.idCol).val(),
-        row = $("#" + self.config.idRow).val();
     self.$container = $(container);
-
-    self.matrix = new Matrix(col, row, $(container), $('.' + self.config.classMainContainer), config);
+    self.matrix = new Matrix($(container), $('.' + self.config.classMainContainer), config);
     self.snake = new Snake(self.matrix, config);
     self.time = 0;
     self.scope = 0;
@@ -114,8 +110,8 @@ var GameSnake = function (container, config) {
         var position = {x: getRandom(1, col), y: getRandom(1, row)};
         while (self.matrix.checkCellClass(position, self.config.classSnake) || self.matrix.checkCellClass(position, self.config.classFruit)) {
             position = {
-                x: getRandom(1, col),
-                y: getRandom(1, row)
+                x: getRandom(1, self.config.NumCol),
+                y: getRandom(1, self.config.NumRow)
             };
         }
         self.matrix.setCellClass(position, self.config.classFruit);

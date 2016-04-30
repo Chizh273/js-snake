@@ -1,13 +1,14 @@
 "use strict";
-var Matrix = function (col, row, $container, $mainContainer, config) {
+var Matrix = function ($container, $mainContainer, config) {
     var self = this;
 
     self.$container = $container;
     self.$mainContainer = $mainContainer;
 
     self.config = config;
-    var col = col,
-        row = row;
+    
+    var col = self.config.NumCol,
+        row = self.config.NumRow;
 
     self.create = function () {
         var container = {

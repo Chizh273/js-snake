@@ -12,6 +12,8 @@ $("#" + config.slider).slider({
 
 $("#" + config.idBtnStart).click(
     function () {
+        config.NumCol = parseInt($("#" + self.config.idCol).val());
+        config.NumRow = parseInt($("#" + self.config.idRow).val());
         var game = new GameSnake("#snake1", config);
         $("#snake1").show();
         $('.' + config.classPanel).show();
