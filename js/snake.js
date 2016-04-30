@@ -21,9 +21,25 @@ var Snake = function (matrix, config) {
 
     self.move = function () {
         var lastBody = self.body[self.body.length - 1];
+        var x = lastBody.x + self.course.x,
+            y = lastBody.y + self.course.y;
+        if (1 > x) {
+            x = self.config.NumCol;
+        }
+        else if (x > self.config.NumCol) {
+            x = 1;
+        }
+        if (1 > y) {
+            y = self.config.NumRow;
+        }
+        else if (y > self.config.NumRow) {
+            y = 1;
+        }
+
+
         var head = {
-            x: lastBody.x + self.course.x,
-            y: lastBody.y + self.course.y
+            x: x,
+            y: y
         };
         if (!self.matrix.checkCellClass(head, self.config.classPoison)
             && !self.matrix.checkCellClass(head, self.config.classSnake)
