@@ -1,5 +1,10 @@
 body {
-    background-color: #00b400;
+    background-color: #6BD152;
+}
+
+input{
+    width: 300px;
+    margin: 10px;
 }
 
 .main {
@@ -11,7 +16,7 @@ body {
     float: left;
     border-top: 1px solid #CCC;
     border-left: 1px solid #CCC;
-    background-color: #00b400;
+    background-color: #6BD152;
 }
 
 .matrix div {
@@ -37,7 +42,7 @@ body {
 .panel {
     margin: auto;
     width: 400px;
-    background-color: #00b400;
+    background-color: #6BD152;
     text-align: center;
 }
 
