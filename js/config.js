@@ -2,6 +2,7 @@
 var config = {
     idRow: "row",
     idCol: "col",
+    idNumFruit: "numFruit",
 
     idBtnStart: "btn-start",
     idBtnPause: "btn-pause",

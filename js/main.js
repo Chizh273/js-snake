@@ -9,6 +9,19 @@ $("#" + config.slider).slider({
     min: -300
 });
 
+$("#" + config.idCol).spinner({
+    min: 3,
+    max: 35
+});
+$("#" + config.idRow).spinner({
+    min: 3,
+    max: 30
+});
+$("#" + config.idNumFruit).spinner({
+    min: 1,
+    max: 20
+});
+
 
 $("#" + config.idBtnStart).click(
     function () {

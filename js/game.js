@@ -9,6 +9,7 @@ var GameSnake = function (container, config) {
     self.time = 0;
     self.scope = 0;
     self.pause = true;
+    self.numFruit = $("#" + self.config.idNumFruit).val();
 
     self.status = true;
 
@@ -29,8 +30,8 @@ var GameSnake = function (container, config) {
     self.create = function () {
         self.matrix.create();
         self.snake.create();
-        self.setFruit();
-        self.setFruit();
+        for (var i = 0; i < self.numFruit; i++)
+            self.setFruit();
     };
 
     self.delete = function () {
@@ -58,8 +59,6 @@ var GameSnake = function (container, config) {
 
         if (self.status) {
             self.status = false;
-            // $("." + self.config.classGameOver).show(100);
-
             $('#' + self.config.idBtnStart).show().html('New game');
 
             self.pause = false;
@@ -68,12 +67,12 @@ var GameSnake = function (container, config) {
                     modal: true,
                     buttons: {
                         "Start again": function () {
-                            $("#" + self.config.idBtnStartAgain).click();
                             $(this).dialog('close');
+                            $("#" + self.config.idBtnStartAgain).click();
                         },
                         "Setting": function () {
-                            $("#" + self.config.idBtnSetting).click();
                             $(this).dialog('close');
+                            $("#" + self.config.idBtnSetting).click();
                         }
                     },
                     close: function () {
@@ -115,7 +114,7 @@ var GameSnake = function (container, config) {
             };
         }
         self.matrix.setCellClass(position, self.config.classFruit);
-        $('.' + self.config.classScore).html(self.snake.body.length - 3);
+        $('.' + self.config.classScore).html(self.snake.body.length);
     };
 
     $(document).keydown(function (e) {
