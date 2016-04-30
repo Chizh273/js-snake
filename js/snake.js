@@ -6,9 +6,7 @@ var Snake = function (matrix, config) {
     self.config = config;
 
     self.body = [
-        {x: 5, y: 2},
-        {x: 5, y: 3},
-        {x: 5, y: 4}
+        {x: getRandom(1, self.config.NumCol), y: getRandom(1, self.config.NumRow)}
     ];
     self.course = {x: 0, y: 1};
 
