@@ -106,7 +106,7 @@ var GameSnake = function (container, config) {
     };
 
     self.setFruit = function () {
-        var position = {x: getRandom(1, col), y: getRandom(1, row)};
+        var position = {x: getRandom(1, self.config.NumCol), y: getRandom(1, self.config.NumRow)};
         while (self.matrix.checkCellClass(position, self.config.classSnake) || self.matrix.checkCellClass(position, self.config.classFruit)) {
             position = {
                 x: getRandom(1, self.config.NumCol),
