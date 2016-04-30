@@ -62,7 +62,7 @@ var GameSnake = function (container, config) {
 
         if (self.status) {
             self.status = false;
-            $("." + self.config.classGameOver).show(100);
+            // $("." + self.config.classGameOver).show(100);
 
             $('#' + self.config.idBtnStart).show().html('New game');
 
@@ -79,6 +79,9 @@ var GameSnake = function (container, config) {
                             $("#" + self.config.idBtnSetting).click();
                             $(this).dialog('close');
                         }
+                    },
+                    close: function () {
+                        $("." + self.config.classGameOver).show(10);
                     }
                 }
             );

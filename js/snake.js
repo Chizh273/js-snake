@@ -27,7 +27,9 @@ var Snake = function (matrix, config) {
             x: lastBody.x + self.course.x,
             y: lastBody.y + self.course.y
         };
-        if (!self.matrix.checkCellClass(head, self.config.classPoison) && !self.matrix.checkCellClass(head, self.config.classSnake) && self.status) {
+        if (!self.matrix.checkCellClass(head, self.config.classPoison)
+            && !self.matrix.checkCellClass(head, self.config.classSnake)
+            && self.status) {
             if (!self.matrix.checkCellClass(head, self.config.classFruit)) {
                 var tail = self.body.shift();
                 self.matrix.clearCell(tail, self.config.classSnake);
