@@ -22,6 +22,7 @@ $("#" + config.idNumFruit).spinner({
     max: 20
 });
 
+$("#" + config.idWallRadioBtn).buttonset();
 
 $("#" + config.idBtnStart).click(
     function () {
