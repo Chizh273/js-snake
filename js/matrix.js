@@ -1,13 +1,14 @@
 "use strict";
-var Matrix = function (col, row, $container, $mainContainer, config) {
+var Matrix = function ($container, $mainContainer, config) {
     var self = this;
 
     self.$container = $container;
     self.$mainContainer = $mainContainer;
 
     self.config = config;
-    var col = col,
-        row = row;
+    
+    var col = self.config.NumCol,
+        row = self.config.NumRow;
 
     self.create = function () {
         var container = {
@@ -15,9 +16,7 @@ var Matrix = function (col, row, $container, $mainContainer, config) {
             height: row * 19 + 1
         }
         self.$mainContainer.css({
-            width: container.width + parseInt($('.' + self.config.classPanel).css('width')) +
-                                     parseInt($('.' + self.config.classPanel).css('margin')) * 2 +
-                                     parseInt(self.$container.css('margin')) * 2
+            width: container.width + parseInt(self.$container.css('margin')) * 2
         });
 
         self.$container.css(container);

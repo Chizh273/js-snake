@@ -2,6 +2,15 @@
 var config = {
     idRow: "row",
     idCol: "col",
+    idNumFruit: "numFruit",
+
+    idWallRadioBtn: "walls-radio",
+    idWallsRadioYes: "walls-yes",
+    idWallsRadioNo: "walls-no",
+
+    idPoisonRadioBtn: "poison-radio",
+    idPoisonRadioYes: "poison-yes",
+    idPoisonRadioNo: "poisons-no",
 
     idBtnStart: "btn-start",
     idBtnPause: "btn-pause",
@@ -19,6 +28,11 @@ var config = {
 
     classAlert: "alert",
 
-    slider: "slider"
+    slider: "slider",
+    setting: "setting",
 
+    idBtnStartAgain: "btn-start-again",
+    idBtnSetting: "btn-setting",
+
+    classGameOver: "game-over"
 };

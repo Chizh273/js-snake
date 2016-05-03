@@ -6,9 +6,7 @@ var Snake = function (matrix, config) {
     self.config = config;
 
     self.body = [
-        {x: 5, y: 2},
-        {x: 5, y: 3},
-        {x: 5, y: 4}
+        {x: getRandom(1, self.config.NumCol), y: getRandom(1, self.config.NumRow)}
     ];
     self.course = {x: 0, y: 1};
 
@@ -22,12 +20,10 @@ var Snake = function (matrix, config) {
     };
 
     self.move = function () {
-        var lastBody = self.body[self.body.length - 1];
-        var head = {
-            x: lastBody.x + self.course.x,
-            y: lastBody.y + self.course.y
-        };
-        if (!self.matrix.checkCellClass(head, self.config.classPoison) && !self.matrix.checkCellClass(head, self.config.classSnake) && self.status) {
+        var head = newPosition();
+        if (!self.matrix.checkCellClass(head, self.config.classPoison)
+            && !self.matrix.checkCellClass(head, self.config.classSnake)
+            && self.status) {
             if (!self.matrix.checkCellClass(head, self.config.classFruit)) {
                 var tail = self.body.shift();
                 self.matrix.clearCell(tail, self.config.classSnake);
@@ -43,4 +39,25 @@ var Snake = function (matrix, config) {
             self.status = false;
         }
     };
+    
+    var newPosition = function (){
+        var lastBody = self.body[self.body.length - 1];
+        var x = lastBody.x + self.course.x,
+            y = lastBody.y + self.course.y;
+        if( !self.config.walls ) {
+            if (1 > x) {
+                x = self.config.NumCol;
+            }
+            else if (x > self.config.NumCol) {
+                x = 1;
+            }
+            if (1 > y) {
+                y = self.config.NumRow;
+            }
+            else if (y > self.config.NumRow) {
+                y = 1;
+            }
+        }
+        return { x: x, y: y };
+    }
 };

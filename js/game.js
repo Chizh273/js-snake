@@ -3,16 +3,13 @@ var GameSnake = function (container, config) {
     var self = this;
 
     self.config = config;
-
-    var col = $("#" + self.config.idCol).val(),
-        row = $("#" + self.config.idRow).val();
     self.$container = $(container);
-
-    self.matrix = new Matrix(col, row, $(container), $('.' + self.config.classMainContainer), config);
+    self.matrix = new Matrix($(container), $('.' + self.config.classMainContainer), config);
     self.snake = new Snake(self.matrix, config);
     self.time = 0;
     self.scope = 0;
     self.pause = true;
+    self.numFruit = $("#" + self.config.idNumFruit).val();
 
     self.status = true;
 
@@ -33,8 +30,8 @@ var GameSnake = function (container, config) {
     self.create = function () {
         self.matrix.create();
         self.snake.create();
-        self.setFruit();
-        self.setFruit();
+        for (var i = 0; i < self.numFruit; i++)
+            self.setFruit();
     };
 
     self.delete = function () {
@@ -42,7 +39,6 @@ var GameSnake = function (container, config) {
     };
 
     self.start = function () {
-        self.spead = $("#" + self.config.slider).slider("value") * (-1);
         self.intervalMove = setInterval(function () {
             if (self.snake.status && self.pause) {
                 self.status = true;
@@ -55,16 +51,14 @@ var GameSnake = function (container, config) {
                 self.setFruit();
                 self.snake.eat = !self.snake.eat;
             }
-        }, self.spead);
+            self.setPoison();
+        }, self.config.speadSnake);
     };
 
     self.gameOver = function () {
 
         if (self.status) {
             self.status = false;
-            $('#' + self.config.idCol).show();
-            $('#' + self.config.idRow).show();
-
             $('#' + self.config.idBtnStart).show().html('New game');
 
             self.pause = false;
@@ -72,12 +66,17 @@ var GameSnake = function (container, config) {
             $('.' + self.config.classAlert).dialog({
                     modal: true,
                     buttons: {
-                        Ok: function () {
+                        "Start again": function () {
                             $(this).dialog('close');
+                            $("#" + self.config.idBtnStartAgain).click();
                         },
-                        "Send score": function () {
-                            //$.ajax();
+                        "Setting": function () {
+                            $(this).dialog('close');
+                            $("#" + self.config.idBtnSetting).click();
                         }
+                    },
+                    close: function () {
+                        $("." + self.config.classGameOver).show(10);
                     }
                 }
             );
@@ -107,31 +106,33 @@ var GameSnake = function (container, config) {
     };
 
     self.setFruit = function () {
-        var position = {x: getRandom(1, col), y: getRandom(1, row)};
-        while (self.matrix.checkCellClass(position, self.config.classSnake)) {
+        self.matrix.setCellClass(getNewPosition(), self.config.classFruit);
+        $('.' + self.config.classScore).html(self.snake.body.length);
+    };
+
+    self.setPoison = function () {
+        if (getRandom(1, 1000) % getRandom(1, 1000) == 0) {
+            self.matrix.setCellClass(getNewPosition(), self.config.classPoison);
+        }
+    };
+
+    var getNewPosition = function () {
+        var position = {x: getRandom(1, self.config.NumCol), y: getRandom(1, self.config.NumRow)};
+        while (self.matrix.checkCellClass(position, self.config.classSnake)
+        || self.matrix.checkCellClass(position, self.config.classFruit)
+        || self.matrix.checkCellClass(position, self.config.classPoison)) {
             position = {
-                x: getRandom(1, col),
-                y: getRandom(1, row)
+                x: getRandom(1, self.config.NumCol),
+                y: getRandom(1, self.config.NumRow)
             };
         }
-        self.matrix.setCellClass(position, self.config.classFruit);
-        $('.' + self.config.classScore).html(self.snake.body.length - 3);
+        return position;
     };
 
     $(document).keydown(function (e) {
         self.keyDown(e);
     });
 
-    $("#" + self.config.slider).slider({
-        max: -50,      
-        min: -1000,
-
-        slide: function (event, ui) {
-            self.spead = $(this).slider("value") * (-1);
-            clearInterval(self.intervalMove);
-            self.start();
-        }
-    });
 
     self.constructor();
 };
