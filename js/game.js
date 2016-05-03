@@ -111,7 +111,7 @@ var GameSnake = function (container, config) {
     };
 
     self.setPoison = function () {
-        if (getRandom(1, 1000) % getRandom(1, 1000) == 0) {
+        if (getRandom(1, 1000) % getRandom(1, 1000) == 0 && self.config.poison) {
             self.matrix.setCellClass(getNewPosition(), self.config.classPoison);
         }
     };
