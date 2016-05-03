@@ -36,7 +36,8 @@ input {
 }
 
 .matrix .poison {
-    background-color: #000000;
+    background-image: url("../img/poison1.png");
+    /*background-color: #000000;*/
 }
 
 .panel {
