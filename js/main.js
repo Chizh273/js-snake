@@ -24,8 +24,10 @@ $("#" + config.idNumFruit).spinner({
 
 $("#" + config.idWallRadioBtn).buttonset();
 
+
 $("#" + config.idBtnStart).click(
     function () {
+        config.walls = ($('input:checked').attr('id') == config.idRadioYes )? true : false;
         config.NumCol = parseInt($("#" + self.config.idCol).val());
         config.NumRow = parseInt($("#" + self.config.idRow).val());
         var game = new GameSnake("#snake1", config);
