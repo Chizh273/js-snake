@@ -4,9 +4,13 @@ var config = {
     idCol: "col",
     idNumFruit: "numFruit",
 
-    idWallRadioBtn: "radio",
-    idRadioYes: "yes",
-    idRadioNo: "no",
+    idWallRadioBtn: "walls-radio",
+    idWallsRadioYes: "walls-yes",
+    idWallsRadioNo: "walls-no",
+
+    idPoisonRadioBtn: "poison-radio",
+    idPoisonRadioYes: "poison-yes",
+    idPoisonRadioNo: "poisons-no",
 
     idBtnStart: "btn-start",
     idBtnPause: "btn-pause",

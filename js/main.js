@@ -22,12 +22,12 @@ $("#" + config.idNumFruit).spinner({
     max: 20
 });
 
-$("#" + config.idWallRadioBtn).buttonset();
+$("#" + config.idWallRadioBtn + ", #" + config.idPoisonRadioBtn).buttonset();
 
 
 $("#" + config.idBtnStart).click(
     function () {
-        config.walls = ($('input:checked').attr('id') == config.idRadioYes )? true : false;
+        config.walls = $('input:checked').attr('id') == config.idWallsRadioYes ? true : false;
         config.NumCol = parseInt($("#" + self.config.idCol).val());
         config.NumRow = parseInt($("#" + self.config.idRow).val());
         var game = new GameSnake("#snake1", config);
