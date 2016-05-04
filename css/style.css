@@ -28,7 +28,9 @@ input {
 }
 
 .matrix .snake {
-    background-color: #ffffff;
+    background-color: #FFF;
+    border-radius: 3px;
+    /*background-image: url("../img/snake.png");*/
 }
 
 .matrix .fruit {
@@ -37,7 +39,6 @@ input {
 
 .matrix .poison {
     background-image: url("../img/poison2.png");
-    /*background-color: #000000;*/
 }
 
 .panel {

@@ -6,9 +6,13 @@ var Snake = function (matrix, config) {
     self.config = config;
 
     self.body = [
-        {x: getRandom(1, self.config.NumCol), y: getRandom(1, self.config.NumRow)}
+        {x: getRandom(1, self.config.NumCol), y: getRandom(1, self.config.NumRow), type: "head-down"}
     ];
     self.course = {x: 0, y: 1};
+    // 0 1 DOWN
+    // 0 -1 UP
+    // 1 0 RIGHT
+    // -1 0 LEFT
 
     self.status = true;
     self.eat = false;
@@ -58,6 +62,6 @@ var Snake = function (matrix, config) {
                 y = 1;
             }
         }
-        return { x: x, y: y };
+        return { x: x, y: y, type: 'head' };
     }
 };

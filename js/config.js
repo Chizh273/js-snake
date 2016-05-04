@@ -23,6 +23,12 @@ var config = {
     classTime: "time",
 
     classSnake: "snake",
+    
+    classSnakeHeadDown: "head-down",
+    classSnakeHeadUp: "head-up",
+    classSnakeHeadLeft: "head-left",
+    classSnakeHeadRight: "head-right",
+
     classFruit: "fruit",
     classPoison: "poison",
 

@@ -9,14 +9,14 @@ $("#" + config.slider).slider({
     min: -300
 });
 
-$("#" + config.idCol).spinner({
-    min: 3,
-    max: 35
-});
-$("#" + config.idRow).spinner({
+$("#" + config.idCol + ", #" + config.idRow).spinner({
     min: 3,
     max: 30
 });
+// $("#" + config.idRow).spinner({
+//     min: 3,
+//     max: 30
+// });
 $("#" + config.idNumFruit).spinner({
     min: 1,
     max: 20
@@ -29,10 +29,12 @@ $("#" + config.idBtnStart).click(
     function () {
         config.walls = $('input[name=walls]:checked').attr('id') == config.idWallsRadioYes ? true : false;
         config.poison = $('input[name=poison]:checked').attr('id') == config.idPoisonRadioYes ? true : false;
+
         config.NumCol = parseInt($("#" + self.config.idCol).val());
         config.NumRow = parseInt($("#" + self.config.idRow).val());
+
         config.speadSnake = $("#" + self.config.slider).slider("value") * (-1);
-        
+
         var game = new GameSnake("#snake1", config);
         $("#snake1").show();
         $('.' + config.classPanel).show();
@@ -51,13 +53,11 @@ $("#" + config.idBtnStartAgain).click(
     }
 );
 
-$("#" + config.idBtnSetting)
-    .click(
-        function () {
-            $('.' + config.setting).show();
-            $('.' + config.classPanel).hide();
-            $("." + config.classGameOver).hide();
-            $("#snake1").hide();
-        }
-    );
-
+$("#" + config.idBtnSetting).click(
+    function () {
+        $('.' + config.setting).show();
+        $('.' + config.classPanel).hide();
+        $("." + config.classGameOver).hide();
+        $("#snake1").hide();
+    }
+);
