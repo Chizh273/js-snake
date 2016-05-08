@@ -38,7 +38,8 @@ input {
 }
 
 .matrix .poison {
-    background-image: url("../img/poison2.png");
+    background-color: #1b6d85;
+    border-radius: 10px;
 }
 
 .panel {
@@ -67,7 +68,7 @@ input {
     margin-top: 20px;
 }
 
-*{
+* {
     font-family: "Algerian";
     font-weight: bold;
     font-size: 20px;

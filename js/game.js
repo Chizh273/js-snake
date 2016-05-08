@@ -16,7 +16,6 @@ var GameSnake = function (container, config) {
 
     self.constructor = function () {
         self.delete();
-        conf();
         self.create();
         $('.' + self.config.classTime).html(0);
         self.intervalLife = setInterval(
@@ -57,7 +56,6 @@ var GameSnake = function (container, config) {
     };
 
     self.gameOver = function () {
-
         if (self.status) {
             self.status = false;
             $('#' + self.config.idBtnStart).show().html('New game');
@@ -130,20 +128,9 @@ var GameSnake = function (container, config) {
         return position;
     };
 
-    var conf = function () {
-        self.config.walls = $('input[name=walls]:checked').attr('id') == self.config.idWallsRadioYes ? true : false;
-        self.config.poison = $('input[name=poison]:checked').attr('id') == self.config.idPoisonRadioYes ? true : false;
-
-        self.config.NumCol = parseInt($("#" + self.config.idCol).val());
-        self.config.NumRow = parseInt($("#" + self.config.idRow).val());
-
-        self.config.speadSnake = $("#" + self.config.slider).slider("value") * (-1);
-    }
-
     $(document).keydown(function (e) {
         self.keyDown(e);
     });
-
 
     self.constructor();
 };

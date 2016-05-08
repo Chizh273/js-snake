@@ -13,10 +13,7 @@ $("#" + config.idCol + ", #" + config.idRow).spinner({
     min: 3,
     max: 30
 });
-// $("#" + config.idRow).spinner({
-//     min: 3,
-//     max: 30
-// });
+
 $("#" + config.idNumFruit).spinner({
     min: 1,
     max: 20
@@ -25,16 +22,8 @@ $("#" + config.idNumFruit).spinner({
 $("#" + config.idWallRadioBtn + ", #" + config.idPoisonRadioBtn).buttonset();
 
 
-$("#" + config.idBtnStart).click(
-    function () {
-        config.walls = $('input[name=walls]:checked').attr('id') == config.idWallsRadioYes ? true : false;
-        config.poison = $('input[name=poison]:checked').attr('id') == config.idPoisonRadioYes ? true : false;
-
-        config.NumCol = parseInt($("#" + self.config.idCol).val());
-        config.NumRow = parseInt($("#" + self.config.idRow).val());
-
-        config.speadSnake = $("#" + self.config.slider).slider("value") * (-1);
-
+$("#" + config.idBtnStart).click( function () {
+        conf();
         var game = new GameSnake("#snake1", config);
         $("#snake1").show();
         $('.' + config.classPanel).show();
@@ -61,3 +50,13 @@ $("#" + config.idBtnSetting).click(
         $("#snake1").hide();
     }
 );
+
+var conf = function () {
+    config.walls = $('input[name=walls]:checked').attr('id') == config.idWallsRadioYes ? true : false;
+    config.poison = $('input[name=poison]:checked').attr('id') == config.idPoisonRadioYes ? true : false;
+
+    config.NumCol = parseInt($("#" + self.config.idCol).val());
+    config.NumRow = parseInt($("#" + self.config.idRow).val());
+
+    config.speadSnake = $("#" + self.config.slider).slider("value") * (-1);
+};
