@@ -28,7 +28,7 @@
             $sth = $this->dbh->prepare( $sql );
             $res = $sth->execute( $params );
 
-            return $sth->fetchAll( \PDO::FETCH_CLASS, $this->className );
+            return $sth->fetchAll( \PDO::FETCH_ASSOC);
         }
 
         public function execute( $sql, $params = [ ] )
