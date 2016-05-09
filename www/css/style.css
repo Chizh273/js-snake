@@ -84,3 +84,9 @@ input {
     text-align: center;
     padding: 25px;
 }
+
+#view-record{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}

@@ -84,8 +84,7 @@ var GameSnake = function (container, config) {
                             $("." + self.config.classGameOver).show(10);
                         }
                     }
-                )
-                ;
+                );
             }
         }
         ;

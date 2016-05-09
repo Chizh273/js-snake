@@ -33,6 +33,7 @@ var config = {
     classPoison: "poison",
 
     classAlert: "alert",
+    classAlertRecord: "alert-record",
 
     slider: "slider",
     setting: "setting",
@@ -42,5 +43,7 @@ var config = {
 
     classGameOver: "game-over",
 
-    idInputName: "name"
+    idInputName: "name",
+    idBtnViewRecord: "view-record",
+    idTableRecord: "record"
 };

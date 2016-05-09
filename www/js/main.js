@@ -22,7 +22,7 @@ $("#" + config.idNumFruit).spinner({
 $("#" + config.idWallRadioBtn + ", #" + config.idPoisonRadioBtn).buttonset();
 
 
-$("#" + config.idBtnStart).click( function () {
+$("#" + config.idBtnStart).click(function () {
         conf();
         var game = new GameSnake("#snake1", config);
         $("#snake1").show();
