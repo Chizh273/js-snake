@@ -59,28 +59,35 @@ var GameSnake = function (container, config) {
             if (self.status) {
                 self.status = false;
                 $('#' + self.config.idBtnStart).show().html('New game');
-
                 self.pause = false;
+                ajaxServer();
                 clearInterval(self.intervalMove);
                 $('.' + self.config.classAlert).dialog({
                         modal: true,
+                        width: 612,
                         buttons: {
-                            "Start again": function () {
-                                $(this).dialog('close');
-                                $("#" + self.config.idBtnStartAgain).click();
-                            },
-                            "Setting": function () {
-                                $(this).dialog('close');
-                                $("#" + self.config.idBtnSetting).click();
+                            "Send record": function () {
+                                var inpt = $("#" + self.config.idInputName).val();
+                                var json = {name: inpt, score: self.snake.body.length, time: self.time};
+                                if (inpt) {
+                                    $.post('/server/ajax.php', json);
+                                    $(this).dialog('close');
+                                }
+                                else {
+                                    $("#" + self.config.idInputName).blur();
+                                }
                             }
+
                         },
                         close: function () {
                             $("." + self.config.classGameOver).show(10);
                         }
                     }
-                );
+                )
+                ;
             }
-        };
+        }
+        ;
 
         self.keyDown = function (event) {
             switch (event.keyCode) {
@@ -140,6 +147,20 @@ var GameSnake = function (container, config) {
                 };
             }
             return position;
+        };
+
+        var ajaxServer = function () {
+            $.post('/server/ajax.php', function (data) {
+                var tab = $("table");
+                tab.children().remove();
+                var html = " <tr> <td>Name</td> <td>Score</td> <td>Time</td> </tr>";
+                for (var i = 0; i < data.length; i++) {
+                    html += "<tr><td>" + data[i].name + "</td>" +
+                        "<td>" + data[i].score + "</td><td>" + data[i].time + "</td></tr>";
+                }
+                html += "<tr> <td><input type='text' id='name' placeholder='Your name'></td> <td>" + (self.snake.body.length - 1) + "</td> <td>" + self.time + "</td></tr>";
+                tab.html(html);
+            }, "json");
         };
 
         $(document).keydown(function (e) {

@@ -6,106 +6,94 @@
     <link rel="shortcut icon" type="image/gif" href="img/Blackvariant-Button-Ui-Requests-13-Snake.ico">
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <!--<link rel="stylesheet" href="css/style.css">-->
+    <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery-2.2.1.js"></script>
     <script src="js/jquery-ui.js"></script>
 </head>
 <body>
-<!--<div class="main">-->
-<!--<div class="panel">-->
-<!--<div class="row res" style="display: none">-->
-<!--<span>Score: <span class="score">0</span></span>-->
-<!--<span>Time: <span class="time">0</span></span>-->
-<!--</div>-->
-<!--</div>-->
 
-<!--<div class="matrix" id="snake1"></div>-->
+<div class="main">
+    <div class="panel">
+        <div class="row res" style="display: none">
+            <span>Score: <span class="score">0</span></span>
+            <span>Time: <span class="time">0</span></span>
+        </div>
+    </div>
 
-<!--<div class="setting">-->
-<!--<div class="row" style="padding: 10px;">-->
-<!--<button id="btn-start" class="btn btn-default"-->
-<!--style="font-size: 24px; width: 350px; display: inline-block;">New game-->
-<!--</button>-->
-<!--</div>-->
-<!--<div class="row">-->
-<!--<div class="slider">-->
-<!--Speed snake <span id="speed"></span>-->
-<!--<div id="slider"></div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="row" style="margin-left: auto;">-->
-<!--<div style="float: left; margin-right: 2px;">-->
-<!--Walls: <br>-->
-<!--<div id="walls-radio">-->
-<!--<label>-->
-<!--Yes-->
-<!--<input type="radio" name="walls" id="walls-yes">-->
-<!--</label>-->
-<!--<label>-->
-<!--No-->
-<!--<input type="radio" name="walls" id="walls-no" checked="checked">-->
-<!--</label>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div>-->
-<!--Poison: <br>-->
-<!--<div id="poison-radio">-->
-<!--<label>-->
-<!--Yes-->
-<!--<input type="radio" name="poison" id="poison-yes">-->
-<!--</label>-->
-<!--<label>-->
-<!--No-->
-<!--<input type="radio" name="poison" id="poison-no" checked="checked">-->
-<!--</label>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div>-->
-<!--Number fruit:<br>-->
-<!--<input type="text" class="" placeholder="Rows" id="numFruit" value="2">-->
-<!--</div>-->
-<!--<div>-->
-<!--Rows:<br>-->
-<!--<input type="text" class="" placeholder="Rows" id="row" value="20">-->
-<!--</div>-->
-<!--<div>-->
-<!--Cols: <br>-->
-<!--<input type="text" class="" placeholder="Cols" id="col" value="20">-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
+    <div class="matrix" id="snake1"></div>
+
+    <div class="setting">
+        <div class="row" style="padding: 10px;">
+            <button id="btn-start" class="btn btn-default"
+                    style="font-size: 24px; width: 350px; display: inline-block;">New game
+            </button>
+        </div>
+        <div class="row">
+            <div class="slider">
+                Speed snake <span id="speed"></span>
+                <div id="slider"></div>
+            </div>
+        </div>
+        <div class="row" style="margin-left: auto;">
+            <div style="float: left; margin-right: 2px;">
+                Walls: <br>
+                <div id="walls-radio">
+                    <label>
+                        Yes
+                        <input type="radio" name="walls" id="walls-yes">
+                    </label>
+                    <label>
+                        No
+                        <input type="radio" name="walls" id="walls-no" checked="checked">
+                    </label>
+                </div>
+            </div>
+            <div>
+                Poison: <br>
+                <div id="poison-radio">
+                    <label>
+                        Yes
+                        <input type="radio" name="poison" id="poison-yes">
+                    </label>
+                    <label>
+                        No
+                        <input type="radio" name="poison" id="poison-no" checked="checked">
+                    </label>
+                </div>
+            </div>
+            <div>
+                Number fruit:<br>
+                <input type="text" class="" placeholder="Rows" id="numFruit" value="2">
+            </div>
+            <div>
+                Rows:<br>
+                <input type="text" class="" placeholder="Rows" id="row" value="20">
+            </div>
+            <div>
+                Cols: <br>
+                <input type="text" class="" placeholder="Cols" id="col" value="20">
+            </div>
+        </div>
+    </div>
+</div>
 
 
-<!--<div class="alert" title="Game over" style="display: none">-->
-<!--<h1>Game over</h1>-->
-<!--<p>Score: <span class="score"></span></p>-->
-<!--<p>Time: <span class="time"></span></p>-->
-<!--&lt;!&ndash;<input type="text" placeholder="Enter to your name" id="name">&ndash;&gt;-->
-<!--</div>-->
+<div class="alert" title="Game over" style="display: none; width: auto">
+    <h1>Game over</h1>
+    <table class="table table-hover">
+    </table>
+</div>
 
-<!--<div class="game-over" style="display: none;">-->
-<!--<button class="btn btn-link" style="color: #2b2b2b; font-size: 36px;" id="btn-start-again">Start again</button>-->
-<!--<button class="btn btn-link" style="color: #2b2b2b; font-size: 36px;" id="btn-setting">Setting</button>-->
-<!--</div>-->
+<div class="game-over" style="display: none;">
+    <button class="btn btn-link" style="color: #2b2b2b; font-size: 36px;" id="btn-start-again">Start again</button>
+    <button class="btn btn-link" style="color: #2b2b2b; font-size: 36px;" id="btn-setting">Setting</button>
+</div>
 
-<!--<script src="js/config.js"></script>-->
-<!--<script src="js/matrix.js"></script>-->
-<!--<script src="js/snake.js"></script>-->
-<!--<script src="js/game.js"></script>-->
-<!--<script src="js/main.js"></script>-->
-
-<button id="ajax">ajax</button>
-<div id="div"></div>
-<script>
-    $("#ajax").click(
-            function () {
-                $("#div").load('/server/ajax.php', function (data) {
-                    console.log(data);
-                });
-            }
-    );
-</script>
+<script src="js/config.js"></script>
+<script src="js/matrix.js"></script>
+<script src="js/snake.js"></script>
+<script src="js/game.js"></script>
+<script src="js/main.js"></script>
 
 </body>
 </html>

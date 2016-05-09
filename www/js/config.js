@@ -40,5 +40,7 @@ var config = {
     idBtnStartAgain: "btn-start-again",
     idBtnSetting: "btn-setting",
 
-    classGameOver: "game-over"
+    classGameOver: "game-over",
+
+    idInputName: "name"
 };
