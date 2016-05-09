@@ -99,9 +99,11 @@
 <div id="div"></div>
 <script>
     $("#ajax").click(
-        function () {
-            $("#div").load('/server/ajax.php', {name: 1, score: 2, time: 3});
-        }
+            function () {
+                $("#div").load('/server/ajax.php', function (data) {
+                    console.log(data);
+                });
+            }
     );
 </script>
 
