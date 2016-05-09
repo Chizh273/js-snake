@@ -65,6 +65,7 @@ var GameSnake = function (container, config) {
                 $('.' + self.config.classAlert).dialog({
                         modal: true,
                         width: 612,
+                        height: 500,
                         buttons: {
                             "Send record": function () {
                                 var inpt = $("#" + self.config.idInputName).val();
@@ -153,12 +154,12 @@ var GameSnake = function (container, config) {
             $.post('/server/ajax.php', function (data) {
                 var tab = $("table");
                 tab.children().remove();
-                var html = " <tr> <td>Name</td> <td>Score</td> <td>Time</td> </tr>";
+                var html = "<tbody> <tr> <td>Name</td> <td>Score</td> <td>Time</td> </tr>";
                 for (var i = 0; i < data.length; i++) {
                     html += "<tr><td>" + data[i].name + "</td>" +
                         "<td>" + data[i].score + "</td><td>" + data[i].time + "</td></tr>";
                 }
-                html += "<tr> <td><input type='text' id='name' placeholder='Your name'></td> <td>" + (self.snake.body.length - 1) + "</td> <td>" + self.time + "</td></tr>";
+                html += "<tr> <td><input type='text' id='name' placeholder='Your name'></td> <td>" + (self.snake.body.length - 1) + "</td> <td>" + self.time + "</td></tr></tbody>";
                 tab.html(html);
             }, "json");
         };
