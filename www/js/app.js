@@ -19,24 +19,6 @@ var requestAjax = function () {
     }, "json");
 };
 
-var sortArray = function (a, b) {
-    if (window.orderBy === "min") {
-        var c = a;
-        a = b;
-        b = c;
-    }
-
-    a = a[window.col];
-    b = b[window.col];
-
-    if (window.col == "score" || window.col == "time") {
-        a = parseInt(a);
-        b = parseInt(b);
-    }
-    if (a > b) return 1;
-    if (a < b) return -1;
-};
-
 main.init();
 
 $("#" + config.idBtnStart).click(function () {
