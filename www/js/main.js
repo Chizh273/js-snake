@@ -4,6 +4,8 @@ var Main = function (config) {
 
     var self = this;
 
+    var oldColon, oldClass;
+
     self.jsonRecord;
 
     self.config = config;
@@ -57,10 +59,37 @@ var Main = function (config) {
         $("." + self.config.classDivRecord).show();
         $('.' + self.config.setting).hide();
     };
-    
+
     self.clickBtnBack = function () {
         $("." + self.config.classDivRecord).hide();
         $('.' + self.config.setting).show();
+    };
+
+    self.clickTagOrderBy = function ($this) {
+        window.col = $($this).attr("class");
+        window.orderBy = $($this).attr("order-by") == null ?
+            ($($this).attr("order-by", "min"), "min") :
+            ($($this).attr("order-by") === "max" ?
+                ($($this).attr("order-by", "min"), "min") :
+                ($($this).attr("order-by", "max"), "max"));
+
+        console.log(window.col, window.orderBy);
+
+        var orderStyle = ( window.orderBy === "max" ) ?
+            "glyphicon-triangle-top" : "glyphicon-triangle-bottom";
+
+        if (oldColon != null) {
+            oldColon.removeClass(oldClass);
+        }
+        var span = $($this).find("span");
+        span.addClass(orderStyle);
+
+        oldColon = $($this).find("span");
+        oldClass = orderStyle;
+
+        self.jsonRecord.sort(sortArray);
+
+        renderRecord(self.jsonRecord);
     };
 
     var conf = function () {

@@ -1,7 +1,5 @@
 var main = new Main(config);
 
-var oldColon, oldClass;
-
 function getRandom(min, max) {
     return parseInt((Math.random() * max) + min);
 }
@@ -62,24 +60,5 @@ $("#" + config.idBtnBack).click(function () {
 });
 
 $(config.tagOrderBy).click(function () {
-    window.col = $(this).attr("class");
-    window.orderBy = $(this).attr("order-by") == null ? ($(this).attr("order-by", "min"), "min") : ($(this).attr("order-by") === "max" ? ($(this).attr("order-by", "min"), "min") : ($(this).attr("order-by", "max"), "max"));
-
-    console.log(window.col, window.orderBy);
-
-    var orderStyle = ( window.orderBy === "max" ) ?
-        "glyphicon-triangle-top" : "glyphicon-triangle-bottom";
-
-    if (oldColon != null) {
-        oldColon.removeClass(oldClass);
-    }
-    var span = $(this).find("span");
-    span.addClass(orderStyle);
-
-    oldColon = $(this).find("span");
-    oldClass = orderStyle;
-
-    main.jsonRecord.sort(sortArray);
-
-    renderRecord(main.jsonRecord);
+    main.clickTagOrderBy(this);
 });
