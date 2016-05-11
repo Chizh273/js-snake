@@ -44,6 +44,10 @@ var config = {
     classGameOver: "game-over",
 
     idInputName: "name",
-    idBtnViewRecord: "view-record",
-    idTableRecord: "record"
+    idBtnViewRecord: "btn-view-record",
+    idTableRecord: "record",
+
+    classTableTbodyRecord: "table-tbody-record",
+
+    tagOrderBy: "thead div"
 };

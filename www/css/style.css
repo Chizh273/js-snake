@@ -85,7 +85,7 @@ input {
     padding: 25px;
 }
 
-#view-record{
+#btn-view-record{
     position: absolute;
     right: 10px;
     top: 10px;
