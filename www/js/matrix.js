@@ -29,14 +29,6 @@ var Matrix = function ($container, $mainContainer, config) {
         });
 
         self.$container.html(matrix);
-
-        //for (var y = 1; y <= row; y++) {
-        //    for (var x = 1; x <= col; x++) {
-        //        self.$container.append(
-        //            $('<div>').addClass('cell-' + x + '-' + y)
-        //        );
-        //    }
-        //}
     };
 
     self.setCellClass = function (position, cls) {
