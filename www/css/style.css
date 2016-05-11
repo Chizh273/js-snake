@@ -90,3 +90,10 @@ input {
     right: 10px;
     top: 10px;
 }
+
+.name, .score, .time {
+    cursor: pointer;
+}
+.name:hover, .score:hover, .time:hover {
+    text-decoration: underline;
+}

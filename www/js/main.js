@@ -1,25 +1,5 @@
 "use strict";
 
-function getRandom(min, max) {
-    return parseInt((Math.random() * max) + min);
-}
-
-var renderRecord = function (data) {
-    var tab = $("." + self.config.classTableTbodyRecord);
-    tab.children().remove();
-    var tabTemplate = new EJS({url: "view/record.ejs"});
-    var html = tabTemplate.render({arr: data});
-    tab.html(html);
-};
-
-var requestAjax = function () {
-    $.post('/server/ajax.php', function (data) {
-        renderRecord(data);
-        self.jsonRecord = data;
-    }, "json");
-};
-
-
 var Main = function (config) {
 
     var self = this;
@@ -28,7 +8,6 @@ var Main = function (config) {
 
     self.config = config;
 
-    var oldColon, oldClass;
 
     self.init = function () {
         $("#" + self.config.slider).slider({
@@ -75,6 +54,7 @@ var Main = function (config) {
 
     self.clickBtnViewRecord = function () {
         requestAjax();
+        console.log(this);
         $('.' + self.config.classAlertRecord).dialog({
                 modal: true,
                 width: 612,
@@ -86,45 +66,6 @@ var Main = function (config) {
                 }
             }
         );
-    };
-
-    self.clickTagTheadDiv = function () {
-        window.col = $(this).attr("class");
-        window.orderBy = $(this).attr("order-by") == null ? ($(this).attr("order-by", "min"), "min") : ($(this).attr("order-by") === "max" ? ($(this).attr("order-by", "min"), "min") : ($(this).attr("order-by", "max"), "max"));
-
-        var orderStyle = ( window.orderBy === "max" ) ?
-            "glyphicon-triangle-top" : "glyphicon-triangle-bottom";
-
-        if (oldColon != null) {
-            oldColon.removeClass(oldClass);
-        }
-        var span = $(this).find("span");
-        span.addClass(orderStyle);
-
-        oldColon = $(this).find("span");
-        oldClass = orderStyle;
-
-        self.jsonRecord.sort(sortArray);
-
-        renderRecord(self.jsonRecord);
-    };
-
-    var sortArray = function (a, b) {
-        if (window.orderBy === "min") {
-            var c = a;
-            a = b;
-            b = c;
-        }
-
-        a = a[window.col];
-        b = b[window.col];
-
-        if (window.col == "score" || window.col == "time") {
-            a = parseInt(a);
-            b = parseInt(b);
-        }
-        if (a > b) return 1;
-        if (a < b) return -1;
     };
 
     var conf = function () {
