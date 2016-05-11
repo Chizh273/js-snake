@@ -97,3 +97,8 @@ input {
 .name:hover, .score:hover, .time:hover {
     text-decoration: underline;
 }
+
+.div-record{
+    width: 600px;
+    margin: 0 auto;
+}

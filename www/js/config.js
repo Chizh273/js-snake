@@ -49,5 +49,8 @@ var config = {
 
     classTableTbodyRecord: "table-tbody-record",
 
-    tagOrderBy: "thead div"
+    tagOrderBy: "thead div",
+
+    classDivRecord: "div-record",
+    idBtnBack: "btn-back"
 };

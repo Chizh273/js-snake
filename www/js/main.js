@@ -54,18 +54,13 @@ var Main = function (config) {
 
     self.clickBtnViewRecord = function () {
         requestAjax();
-        console.log(this);
-        $('.' + self.config.classAlertRecord).dialog({
-                modal: true,
-                width: 612,
-                height: 350,
-                buttons: {
-                    "Ok": function () {
-                        $(this).dialog('close');
-                    }
-                }
-            }
-        );
+        $("." + self.config.classDivRecord).show();
+        $('.' + self.config.setting).hide();
+    };
+    
+    self.clickBtnBack = function () {
+        $("." + self.config.classDivRecord).hide();
+        $('.' + self.config.setting).show();
     };
 
     var conf = function () {

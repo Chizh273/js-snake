@@ -57,6 +57,10 @@ $("#" + config.idBtnViewRecord).click(function () {
     main.clickBtnViewRecord();
 });
 
+$("#" + config.idBtnBack).click(function () {
+    main.clickBtnBack();
+});
+
 $(config.tagOrderBy).click(function () {
     window.col = $(this).attr("class");
     window.orderBy = $(this).attr("order-by") == null ? ($(this).attr("order-by", "min"), "min") : ($(this).attr("order-by") === "max" ? ($(this).attr("order-by", "min"), "min") : ($(this).attr("order-by", "max"), "max"));
