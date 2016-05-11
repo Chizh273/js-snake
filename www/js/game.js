@@ -17,11 +17,11 @@ var GameSnake = function (container, config) {
         self.constructor = function () {
             self.delete();
             self.create();
-            $('.' + self.config.classTime).html(0);
+            $('span.' + self.config.classTime).html(0);
             self.intervalLife = setInterval(
                 function () {
                     if (self.pause) {
-                        $('.' + self.config.classTime).html(self.time++);
+                        $('span.' + self.config.classTime).html(self.time++);
                     }
                 }, 1000
             );
@@ -122,7 +122,7 @@ var GameSnake = function (container, config) {
 
         self.setFruit = function () {
             self.matrix.setCellClass(getNewPosition(), self.config.classFruit);
-            $('.' + self.config.classScore).html(self.snake.body.length);
+            $('span.' + self.config.classScore).html(self.snake.body.length);
         };
 
         self.setPoison = function () {
