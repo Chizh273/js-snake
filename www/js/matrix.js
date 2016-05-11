@@ -2,11 +2,13 @@
 var Matrix = function ($container, $mainContainer, config) {
     var self = this;
 
+    var template = new EJS({url: "view/matrix.ejs"});
+
     self.$container = $container;
     self.$mainContainer = $mainContainer;
 
     self.config = config;
-    
+
     var col = self.config.NumCol,
         row = self.config.NumRow;
 
@@ -20,13 +22,21 @@ var Matrix = function ($container, $mainContainer, config) {
         });
 
         self.$container.css(container);
-        for (var y = 1; y <= row; y++) {
-            for (var x = 1; x <= col; x++) {
-                self.$container.append(
-                    $('<div>').addClass('cell-' + x + '-' + y)
-                );
-            }
-        }
+
+        var matrix = template.render({
+            rows: row,
+            cols: col
+        });
+
+        self.$container.html(matrix);
+
+        //for (var y = 1; y <= row; y++) {
+        //    for (var x = 1; x <= col; x++) {
+        //        self.$container.append(
+        //            $('<div>').addClass('cell-' + x + '-' + y)
+        //        );
+        //    }
+        //}
     };
 
     self.setCellClass = function (position, cls) {
