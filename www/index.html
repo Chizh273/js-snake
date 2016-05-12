@@ -112,36 +112,16 @@
 
 
 <div class="alert" title="Game over" style="display: none; width: auto">
-    <h1>Game over</h1>
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <td>
-                <div class="name">
-                    Name<span class="glyphicon"></span>
-                </div>
-            </td>
-            <td>
-                <div class="score">
-                    Score<span class="glyphicon"></span>
-                </div>
-            </td>
-            <td>
-                <div class="time">
-                    Time<span class="glyphicon"></span>
-                </div>
-            </td>
-        </tr>
-        </thead>
-        <tbody class="table-tbody-record">
-
-        </tbody>
-        <tr>
-            <td><input type="text" name="name"></td>
-            <td><span class="score"></span></td>
-            <td><span class="time"></span></td>
-        </tr>
-    </table>
+    <h1 style="text-align: center;">Game over</h1>
+    <p>Your score: <span class="score"></span></p>
+    <p>Your time: <span class="time"></span></p>
+    <hr>
+    <p>
+        <label>
+            Your name:
+            <input type="text" name="name" class="form-control">
+        </label>
+    </p>
 </div>
 
 <div class="alert-record" title="Records" style="display: none; width: auto">

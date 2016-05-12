@@ -60,12 +60,12 @@ var GameSnake = function (container, config) {
                 self.status = false;
                 $('#' + self.config.idBtnStart).show().html('New game');
                 self.pause = false;
-                requestAjax();
+                //requestAjax();
                 clearInterval(self.intervalMove);
                 $('.' + self.config.classAlert).dialog({
                         modal: true,
-                        width: 612,
-                        height: 500,
+                        width: 387,
+                        height: 435,
                         buttons: {
                             "Send record": function () {
                                 var inpt = $("input[name=" + self.config.idInputName + "]").val();
@@ -82,6 +82,7 @@ var GameSnake = function (container, config) {
                         },
                         close: function () {
                             $("." + self.config.classGameOver).show(10);
+                            $("#" + self.config.idBtnViewRecord).show(10);
                         }
                     }
                 );
@@ -126,7 +127,7 @@ var GameSnake = function (container, config) {
         };
 
         self.setPoison = function () {
-            if (getRandom(1, 100000) % getRandom(1, 100000) == 0 && self.config.poison) {
+            if (getRandom(1, 10000) % getRandom(1, 10000) == 0 && self.config.poison) {
                 self.matrix.setCellClass(getNewPosition(), self.config.classPoison);
             }
         };

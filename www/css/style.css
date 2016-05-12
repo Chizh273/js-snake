@@ -100,10 +100,10 @@ input {
     left: 10px;
 }
 
-.name, .score, .time {
+div.name, div.score, div.time {
     cursor: pointer;
 }
-.name:hover, .score:hover, .time:hover {
+div.name:hover, div.score:hover, div.time:hover {
     text-decoration: underline;
 }
 
