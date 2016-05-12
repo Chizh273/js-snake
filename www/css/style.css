@@ -85,10 +85,19 @@ input {
     padding: 25px;
 }
 
-#btn-view-record{
+#btn-view-record, #btn-back{
+    font-size: 20px;
     position: absolute;
-    right: 10px;
+    /*right: 10px;*/
     top: 10px;
+}
+
+#btn-view-record{
+    right: 10px;
+}
+
+#btn-back{
+    left: 10px;
 }
 
 .name, .score, .time {
