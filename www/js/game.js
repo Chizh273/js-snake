@@ -56,11 +56,23 @@ var GameSnake = function (container, config) {
         };
 
         self.gameOver = function () {
+
+            var name = [];
+
+            $.post('/server/ajax.php', {action: "name"}, function (data) {
+                for (var i in data) {
+                    name[i] = data[i].name;
+                }
+                $("input[name=" + self.config.idInputName + "]").autocomplete({ source: name });
+            }, "json");
+
+            //console.log(self.name);
+
+
             if (self.status) {
                 self.status = false;
                 $('#' + self.config.idBtnStart).show().html('New game');
                 self.pause = false;
-                //requestAjax();
                 clearInterval(self.intervalMove);
                 $('.' + self.config.classAlert).dialog({
                         modal: true,
@@ -69,13 +81,11 @@ var GameSnake = function (container, config) {
                         buttons: {
                             "Send record": function () {
                                 var inpt = $("input[name=" + self.config.idInputName + "]").val();
+                                $("input[name=" + self.config.idInputName + "]").val("");
                                 var json = {name: inpt, score: self.snake.body.length, time: self.time};
                                 if (inpt) {
                                     $.post('/server/ajax.php', json);
                                     $(this).dialog('close');
-                                }
-                                else {
-                                    $("#" + self.config.idInputName).blur();
                                 }
                             }
 
