@@ -19,8 +19,6 @@ var requestAjax = function () {
     }, "json");
 };
 
-main.init();
-
 $("#" + config.idBtnStart).click(function () {
     main.clickBtnStart();
 });

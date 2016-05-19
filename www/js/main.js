@@ -10,26 +10,6 @@ var Main = function (config) {
 
     self.config = config;
 
-
-    self.init = function () {
-        $("#" + self.config.slider).slider({
-            max: -50,
-            min: -300
-        });
-
-        $("#" + self.config.idCol + ", #" + self.config.idRow).spinner({
-            min: 3,
-            max: 30
-        });
-
-        $("#" + self.config.idNumFruit).spinner({
-            min: 1,
-            max: 20
-        });
-
-        $("#" + self.config.idWallRadioBtn + ", #" + self.config.idPoisonRadioBtn).buttonset();
-    };
-
     self.clickBtnStart = function () {
         conf();
         var game = new GameSnake("#snake1", self.config);
@@ -92,7 +72,34 @@ var Main = function (config) {
         renderRecord(self.jsonRecord);
     };
 
+    var init = function () {
+        $("#" + self.config.slider).slider({
+            max: -50,
+            min: -300
+        });
+
+        $("#" + self.config.idCol + ", #" + self.config.idRow).spinner({
+            min: 3,
+            max: 30
+        });
+
+        $("#" + self.config.idNumFruit).spinner({
+            min: 1,
+            max: 20
+        });
+
+        $("#" + self.config.idWallRadioBtn + ", #" + self.config.idPoisonRadioBtn).buttonset();
+
+        $("input[data-type=setting]").tooltip({
+            position: {
+                my: "left top",
+                at: "right+5 top-5"
+            }
+        });
+    };
+
     var conf = function () {
+
         self.config.walls = $('input[name=walls]:checked').attr('id') == self.config.idWallsRadioYes ? true : false;
         self.config.poison = $('input[name=poison]:checked').attr('id') == self.config.idPoisonRadioYes ? true : false;
 
@@ -119,4 +126,6 @@ var Main = function (config) {
         if (a > b) return 1;
         if (a < b) return -1;
     };
+
+    init();
 };
