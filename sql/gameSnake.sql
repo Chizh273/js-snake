@@ -34,16 +34,6 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
 
---
--- Дамп данных таблицы `user`
---
-
-INSERT INTO `user` (`id`, `name`, `score`, `time`) VALUES
-(1, 'Jon', 1, 1),
-(22, 'Andr', 2, 2),
-(23, 'JS-snake', 14, 23),
-(24, 'Jeremy', 22, 42),
-(26, 'Merry', 75, 86);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
