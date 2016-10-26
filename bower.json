@@ -1,0 +1,14 @@
+{
+  "name": "js-snake",
+  "description": "JS game \"Snake\"",
+  "main": "index.js",
+  "authors": [
+    "chizh273 <chizh273@gmail.com>"
+  ],
+  "license": "BSD-2-Clause",
+  "homepage": "https://github.com/Chizh273/js-snake",
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "sanitize-css": "^4.1.0"
+  }
+}
