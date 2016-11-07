@@ -1,25 +1,48 @@
 "use strict";
 
-var gulp        = require("gulp");
-var coffee      = require("gulp-coffee");
-var less        = require("gulp-less");
-var notify      = require("gulp-notify");
-var concat      = require("gulp-concat");
-var del         = require("del");
-var browserSync = require("browser-sync");
+const gulp             = require("gulp"),
+      notify           = require("gulp-notify"),
+      sass             = require('gulp-sass'),
+      plumber          = require('gulp-plumber'),
+      sassGlob         = require('gulp-sass-glob'),
+      stripCssComments = require('gulp-strip-css-comments'),
+      concat           = require("gulp-concat"),
+      sourceMaps       = require("gulp-sourcemaps"),
+      del              = require("del"),
+      ts               = require('gulp-typescript'),
+      browserSync      = require("browser-sync");
+
+
+var tsProject = ts.createProject('tsconfig.json');
+
 
 gulp.task("clean", function() {
   return del("./build/");
 });
 
 gulp.task("bower-js", function() {
-  return gulp.src(["./bower_components/jquery/dist/jquery.js"])
+  return gulp.src([
+    "./bower_components/jquery/dist/jquery.js",
+    "./bower_components/bootstrap/dist/js/bootstrap.js"
+  ])
     .pipe(gulp.dest("./build/js"))
 });
 
 gulp.task("bower-css", function() {
-  return gulp.src(["./bower_components/sanitize-css/sanitize.css"])
+  return gulp.src([
+    "./bower_components/sanitize-css/sanitize.css",
+    "./bower_components/bootstrap/dist/css/bootstrap.css",
+    "./bower_components/components-font-awesome/css/font-awesome.css"
+  ])
     .pipe(gulp.dest("./build/css"))
+});
+
+gulp.task("bower-font", function() {
+  return gulp.src([
+    "./bower_components/bootstrap/dist/fonts/**/*.*",
+    "./bower_components/components-font-awesome/fonts/**/*.*",
+  ])
+    .pipe(gulp.dest("./build/fonts"))
 });
 
 gulp.task("html", function() {
@@ -29,28 +52,35 @@ gulp.task("html", function() {
 
 });
 
-gulp.task("less", function() {
-  return gulp.src("./assets/less/**/app.less")
-    .pipe(less())
-    .on("error", notify.onError({
-      title: "Error Less"
+gulp.task("sass", function() {
+  return gulp.src(['./assets/scss/app.scss'])
+    .pipe(plumber(({
+      errorHandler: function(err) {
+        console.log(err);
+        this.emit('end');
+      }
+    })))
+    .pipe(sassGlob())
+    .pipe(stripCssComments())
+    .pipe(sass({
+      style         : 'expanded',
+      sourceComments: 'map',
+      sourceMap     : 'sass',
+      outputStyle   : 'nested',
     }))
-    .pipe(gulp.dest("./build/css"))
-    .pipe(browserSync.stream());
+    .pipe(sass.sync())
+    .pipe(gulp.dest('./build/css/'))
 });
 
-gulp.task("coffee", function() {
-  return gulp.src("./assets/coffee/**/*.coffee")
-    .pipe(concat("app.coffee"))
-    .pipe(coffee({ map: true }))
-    .on('error', function(error) {
-      var args = Array.prototype.slice.call(arguments);
-      notify.onError('Coffee error: <%= error.stack %>').apply(this, args);
-      this.emit("end");
-    })
-    .pipe(gulp.dest("./build/js"))
-    .pipe(browserSync.stream());
+gulp.task("ts", function() {
+  var tsResult = tsProject.src()
+    .pipe(sourceMaps.init())
+    .pipe(tsProject());
 
+  return tsResult.js
+    .pipe(concat('app.js'))
+    .pipe(sourceMaps.write())
+    .pipe(gulp.dest('./build/js/'));
 });
 
 gulp.task("sync", function() {
@@ -68,6 +98,8 @@ gulp.task("watch", function() {
   gulp.watch("./assets/index.html", ["html"]);
 });
 
-gulp.task("build", ["clean", "bower-css", "bower-js", "html", "less", "coffee"]);
+gulp.task("bower", ["bower-js", "bower-css", "bower-font"]);
+
+gulp.task("build", ["bower", "html", "sass", "ts"]);
 
 gulp.task("default", ["build", "sync", "watch"]);
