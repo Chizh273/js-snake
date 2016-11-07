@@ -3,4 +3,8 @@
 old/
 bower_components/
 node_modules/
-build/
+assets/ts/*.js
+
+build/css
+build/js
+build/fonts

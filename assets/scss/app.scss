@@ -1,3 +1,20 @@
-* {
-  background-color: gray;
+$matrix-border-color: #111;
+
+
+body {
+  background-color: #334;
+}
+
+div.game {
+  margin: 40px 10px;
+  border-top: 1px solid $matrix-border-color;
+  border-left: 1px solid $matrix-border-color;
+
+  div {
+    color:white;
+    border-right: 1px solid $matrix-border-color;
+    border-bottom: 1px solid $matrix-border-color;
+    float:left;
+  }
+
 }

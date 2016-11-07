@@ -1,5 +1,18 @@
+import {Position, Direction} from "./position";
+
 export class Snake {
-    constructor() {
-        console.log('create Snake');
+    direction = Direction.Up;
+
+    constructor(public length: number,
+                public startPosition: Position[]) {
+
+    }
+
+    move() {
+//TODO
+    }
+
+    displaySnake() {
+//TODO
     }
 }

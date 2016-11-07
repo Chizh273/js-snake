@@ -8,8 +8,10 @@ const gulp             = require("gulp"),
       stripCssComments = require('gulp-strip-css-comments'),
       concat           = require("gulp-concat"),
       sourceMaps       = require("gulp-sourcemaps"),
-      del              = require("del"),
       ts               = require('gulp-typescript'),
+      del              = require("del"),
+      source           = require('vinyl-source-stream'),
+      browserify       = require('browserify'),
       browserSync      = require("browser-sync");
 
 
@@ -45,20 +47,10 @@ gulp.task("bower-font", function() {
     .pipe(gulp.dest("./build/fonts"))
 });
 
-gulp.task("html", function() {
-  return gulp.src("./assets/index.html")
-    .pipe(gulp.dest("./build/"))
-    .pipe(browserSync.stream());
-
-});
-
 gulp.task("sass", function() {
   return gulp.src(['./assets/scss/app.scss'])
     .pipe(plumber(({
-      errorHandler: function(err) {
-        console.log(err);
-        this.emit('end');
-      }
+      errorHandler: notify.onError('SASS error: <%= error.message %>')
     })))
     .pipe(sassGlob())
     .pipe(stripCssComments())
@@ -72,16 +64,29 @@ gulp.task("sass", function() {
     .pipe(gulp.dest('./build/css/'))
 });
 
-gulp.task("ts", function() {
+gulp.task("js:ts", function() {
   var tsResult = tsProject.src()
     .pipe(sourceMaps.init())
-    .pipe(tsProject());
+    .pipe(tsProject())
+    .on("error", notify.onError);
 
   return tsResult.js
-    .pipe(concat('app.js'))
     .pipe(sourceMaps.write())
-    .pipe(gulp.dest('./build/js/'));
+    .pipe(gulp.dest('./'));
 });
+
+gulp.task("js:browserify", ['js:ts'], function() {
+  return browserify('./assets/ts/app.js', { debug: true })
+    .bundle().on('error', function(error) {
+      var args = Array.prototype.slice.call(arguments);
+      notify.onError('Browserify error: <%= error.message %>').apply(this, args);
+      this.emit("end");
+    })
+    .pipe(source('app.js'))
+    .pipe(gulp.dest('./build/js'))
+});
+
+gulp.task("js", ["js:browserify"])
 
 gulp.task("sync", function() {
   browserSync.init({
@@ -92,14 +97,14 @@ gulp.task("sync", function() {
 
 });
 
-gulp.task("watch", function() {
-  gulp.watch("./assets/less/**/*.less", ["less"]);
-  gulp.watch("./assets/coffee/**/*.coffee", ["coffee"]);
-  gulp.watch("./assets/index.html", ["html"]);
+gulp.task("watch", ["bower", "sass", 'sync'], function() {
+  gulp.watch("./assets/scss/**/*.s*ss", ["sass", browserSync.reload]);
+  gulp.watch("./assets/ts/**/*.ts", ["js", browserSync.reload]);
+  gulp.watch("./build/index.html", browserSync.reload);
 });
 
 gulp.task("bower", ["bower-js", "bower-css", "bower-font"]);
-
-gulp.task("build", ["bower", "html", "sass", "ts"]);
-
-gulp.task("default", ["build", "sync", "watch"]);
+//
+//gulp.task("build", ["bower", "sass", "js"]);
+//
+//gulp.task("default", ["build", "sync", "watch"]);
