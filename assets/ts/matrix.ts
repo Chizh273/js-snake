@@ -1,5 +1,7 @@
 /// <reference path="../definitions/jquery.d.ts"/>
 
+import {Position} from './position';
+
 export class Matrix {
     matrixSizeWidth: number;
     matrixSizeHeight: number;
@@ -32,11 +34,15 @@ export class Matrix {
         }).css({
             "width": this.sizeCell,
             "height": this.sizeCell
-        }).text((x) + ';' + (y));
+        });
     }
 
-    getCell(row: number, col: number): JQuery {
+    getCell(cell: Position): JQuery {
         return this.$container
-            .find(`[data-row=${row}][data-col=${col}]`);
+            .find(`[data-row=${cell.x}][data-col=${cell.y}]`);
+    }
+
+    addClassToCell(cell: Position, className:string) {
+        this.getCell(cell).addClass(className);
     }
 }

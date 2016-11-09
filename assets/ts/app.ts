@@ -1,14 +1,11 @@
 /// <reference path="../definitions/jquery.d.ts"/>
 
-import {Matrix} from "./matrix";
-import {Snake} from  "./snake";
+
 import {GameSnake} from "./gameSnake";
 
-let matrix: Matrix = new Matrix(10, 10, 40, $('.game'));
-matrix.createMatrix();
+let game = new GameSnake(20, 500, $('.game'));
+game.start();
 
-
-// let snake = new Snake();
-// let game = new GameSnake();
-
-
+$(window).keydown(function (e) {
+    game.setDirection(e);
+})

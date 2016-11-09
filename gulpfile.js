@@ -18,10 +18,6 @@ const gulp             = require("gulp"),
 var tsProject = ts.createProject('tsconfig.json');
 
 
-gulp.task("clean", function() {
-  return del("./build/");
-});
-
 gulp.task("bower-js", function() {
   return gulp.src([
     "./bower_components/jquery/dist/jquery.js",
@@ -104,7 +100,4 @@ gulp.task("watch", ["bower", "sass", 'sync'], function() {
 });
 
 gulp.task("bower", ["bower-js", "bower-css", "bower-font"]);
-//
-//gulp.task("build", ["bower", "sass", "js"]);
-//
-//gulp.task("default", ["build", "sync", "watch"]);
+

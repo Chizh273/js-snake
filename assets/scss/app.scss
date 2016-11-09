@@ -15,6 +15,10 @@ div.game {
     border-right: 1px solid $matrix-border-color;
     border-bottom: 1px solid $matrix-border-color;
     float:left;
+
+    &.snake {
+      background-color: #CCC;
+    }
   }
 
 }
