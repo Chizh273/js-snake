@@ -2,8 +2,11 @@
 
 
 import {GameSnake} from "./gameSnake";
+import {configSnake} from "./configSnake";
 
-let game = new GameSnake(20, 500, $('.game'));
+let game = new GameSnake(
+    $('.game'),
+    new configSnake('snake', 'fruit', 'poison', 20, 100));
 game.start();
 
 $(window).keydown(function (e) {

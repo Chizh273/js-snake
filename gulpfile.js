@@ -63,10 +63,10 @@ gulp.task("sass", function() {
 gulp.task("js:ts", function() {
   var tsResult = tsProject.src()
     .pipe(sourceMaps.init())
-    .pipe(tsProject())
-    .on("error", notify.onError);
+    .pipe(tsProject());
 
   return tsResult.js
+    .on("error", notify.onError)
     .pipe(sourceMaps.write())
     .pipe(gulp.dest('./'));
 });

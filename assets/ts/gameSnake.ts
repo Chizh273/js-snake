@@ -1,43 +1,58 @@
 import {Snake} from "./snake";
-import {Position, Direction} from "./position";
+import {Position} from "./position";
 import {Matrix} from "./matrix";
+import {configSnake} from "./configSnake";
 
 export class GameSnake {
     matrix: Matrix;
     snake: Snake;
     intervalGame;
 
-    constructor(sizeGame: number, public spead: number, elMatrix: JQuery) {
-        this.matrix = new Matrix(sizeGame, sizeGame, 20, elMatrix);
+    constructor(elMatrix: JQuery, public config: configSnake) {
+        this.matrix = new Matrix(
+            this.config.sizeGame,
+            this.config.sizeGame,
+            20,
+            elMatrix);
+
         this.snake = new Snake(
             [new Position(1, 1), new Position(1, 2), new Position(1, 3)],
-            this.matrix);
+            this.matrix, this.config, {
+                generateFruit: this.generateFruit,
+                gameOver: this.gameOver
+            });
 
         this.matrix.createMatrix();
     }
 
     start(): void {
-        let self = this;
-        this.intervalGame = setInterval(function () {
-            self.snake.displaySnake().move();
-        }, this.spead)
+        this.intervalGame = setInterval(() => {
+            this.snake.displaySnake().move();
+        }, this.config.speed);
     }
 
     setDirection(e): void {
         switch (e.which) {
             case 38:
-                this.snake.setDirection(Direction.Up);
+                this.snake.setDirection('Up');
                 break;
             case 40:
-                this.snake.setDirection(Direction.Down);
+                this.snake.setDirection('Down');
                 break;
             case 39:
-                this.snake.setDirection(Direction.Right);
+                this.snake.setDirection('Right');
                 break;
             case 37:
-                this.snake.setDirection(Direction.Left);
+                this.snake.setDirection('Left');
                 break;
-
         }
+    }
+
+    gameOver(){
+        console.log('game over');
+    }
+
+    generateFruit(){
+        console.log('add fruit');
     }
 }
