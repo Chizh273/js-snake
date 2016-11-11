@@ -21,7 +21,7 @@ var tsProject = ts.createProject('tsconfig.json');
 gulp.task("bower-js", function() {
   return gulp.src([
     "./bower_components/jquery/dist/jquery.js",
-    "./bower_components/bootstrap/dist/js/bootstrap.js"
+    "./bower_components/underscore/underscore.js"
   ])
     .pipe(gulp.dest("./build/js"))
 });

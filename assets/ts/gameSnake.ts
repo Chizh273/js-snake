@@ -1,7 +1,10 @@
+/// <reference path="../definitions/underscore.d.ts"/>
+
 import {Snake} from "./snake";
 import {Position} from "./position";
 import {Matrix} from "./matrix";
 import {configSnake} from "./configSnake";
+import {Cell} from "./cell";
 
 export class GameSnake {
     matrix: Matrix;
@@ -18,11 +21,19 @@ export class GameSnake {
         this.snake = new Snake(
             [new Position(1, 1), new Position(1, 2), new Position(1, 3)],
             this.matrix, this.config, {
-                generateFruit: this.generateFruit,
-                gameOver: this.gameOver
+                generateFruit: ()=> {
+                    this.generateFruit()
+                },
+                gameOver: ()=> {
+                    this.gameOver()
+                }
             });
 
         this.matrix.createMatrix();
+
+        this.generateFruit();
+        this.generateFruit();
+        this.generateFruit();
     }
 
     start(): void {
@@ -48,11 +59,29 @@ export class GameSnake {
         }
     }
 
-    gameOver(){
+    gameOver() {
         console.log('game over');
     }
 
-    generateFruit(){
-        console.log('add fruit');
+    generateFruit() {
+        let cell: Cell;
+        while ((cell = this._getRandomCell()) && this._checkCellToMakeFruit(cell)) {
+        }
+        cell.setClass(this.config.clsFruit);
+    }
+
+    _checkCellToMakeFruit(cell: Cell): boolean {
+        return cell.hasClass(this.config.clsPoison) ||
+            cell.hasClass(this.config.clsSnake) ||
+            cell.hasClass(this.config.clsFruit);
+    }
+
+    _getRandomCell(): Cell {
+        return this.matrix.getCell(
+            new Position(
+                _.random(0, this.config.sizeGame - 1),
+                _.random(0, this.config.sizeGame - 1)
+            )
+        );
     }
 }

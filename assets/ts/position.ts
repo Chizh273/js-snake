@@ -3,10 +3,3 @@ export class Position {
 
     }
 }
-
-export const Direction = {
-    Up: new Position(-1, 0),
-    Down: new Position(1, 0),
-    Left: new Position(0, -1),
-    Right: new Position(0, 1)
-}
