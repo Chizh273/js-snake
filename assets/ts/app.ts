@@ -12,3 +12,8 @@ game.start();
 $(window).keydown(function (e) {
     game.setDirection(e);
 })
+
+$('.btn-start').click(function () {
+    $('.game-over').remove();
+    game.restart();
+});

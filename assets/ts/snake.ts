@@ -19,7 +19,7 @@ export class Snake {
                 public config: configSnake,
                 public callbacks: {
                     gameOver: Function;
-                    generateFruit: Function;
+                    snakeEat: Function;
                 }) {
         this.body = startPosition;
     }
@@ -40,7 +40,7 @@ export class Snake {
             }
             else if (cell.hasClass(this.config.clsFruit)) {
                 this.body.push(newHead);
-                this.callbacks.generateFruit();
+                this.callbacks.snakeEat();
             }
             else if (cell.hasClass(this.config.clsPoison)) {
                 this.callbacks.gameOver();
@@ -72,8 +72,11 @@ export class Snake {
     }
 
     setDirection(dir: string): void {
-        if (this.directions[dir] != null) {
-            this.direction = this.directions[dir];
+        let newDir, oldDir = this.direction;
+        if ((newDir = this.directions[dir]) != null) {
+            if (newDir.x + oldDir.x !== 0 && newDir.y + oldDir.y !== 0) {
+                this.direction = this.directions[dir];
+            }
         }
     }
 }

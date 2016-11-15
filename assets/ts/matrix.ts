@@ -10,6 +10,7 @@ export class Matrix {
     constructor(public row: number, public col: number,
                 public sizeCell: number, public $container: JQuery) {
 
+        this._removeCellMatrix();
         this.matrixSizeHeight = row * sizeCell + 1;
         this.matrixSizeWidth = col * sizeCell + 1;
         $container.css({
@@ -54,5 +55,9 @@ export class Matrix {
 
     removeClass(tail: Position) {
         this.getCell(tail).removeClass();
+    }
+
+    _removeCellMatrix(): void {
+        this.$container.children().remove();
     }
 }
