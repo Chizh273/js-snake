@@ -4,7 +4,9 @@ old/
 bower_components/
 node_modules/
 assets/ts/*.js
+assets/ts/*.map
 
 build/css
 build/js
 build/fonts
+typings

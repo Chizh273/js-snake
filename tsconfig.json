@@ -5,7 +5,7 @@
     "sourceMap": true
   },
   "files": [
-    "app.ts"
+    "assets/ts/app.ts"
   ],
   "include": [
     "assets/ts/**/*.ts"

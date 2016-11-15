@@ -1,4 +1,4 @@
-/// <reference path="../definitions/jquery.d.ts"/>
+/// <reference path="../../typings/tsd.d.ts" />
 
 
 import {GameSnake} from "./gameSnake";

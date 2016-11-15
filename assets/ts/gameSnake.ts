@@ -1,4 +1,4 @@
-/// <reference path="../definitions/underscore.d.ts"/>
+/// <reference path="../../typings/tsd.d.ts" />
 
 import {Snake} from "./snake";
 import {Position} from "./position";

@@ -1,4 +1,5 @@
-/// <reference path="../definitions/jquery.d.ts"/>
+/// <reference path="../../typings/tsd.d.ts" />
+
 
 import {Position} from './position';
 import {Cell} from "./cell";
