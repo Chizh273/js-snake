@@ -1,22 +1,44 @@
 /// <reference path="../../typings/tsd.d.ts" />
 
+/**
+ * Class Label
+ * */
 export class Label {
-    label: JQuery;
-    _wrapper: JQuery = $('<div>');
+    private _label: JQuery;
+    private _wrapper: JQuery = $('<div>');
 
+    /**
+     * Create Label
+     *
+     * @param text { string } - text to label
+     * @param cls { string } - class wrapper this label
+     * */
     constructor(text: string, cls: string) {
         this._wrapper.addClass(cls);
-        this.label = $('<h1>').text(text).wrap(this._wrapper).parent();
-        this.label.append(
+        this._label = $('<h1>').text(text).wrap(this._wrapper).parent();
+        this._label.append(
             $('<button>').addClass('btn-start').text('Game')
         );
     }
 
-    setText(text: string) {
-        this.label.find('h1').text(text);
+    /**
+     * Set text in label
+     * @access public
+     *
+     * @param text { string } - text to label
+     * @return { void }
+     * */
+    setText(text: string): void {
+        this._label.find('h1').text(text);
     }
 
-    show() {
-        $('body').prepend(this.label);
+    /**
+     * Show label
+     * @access public
+     *
+     * @return { void }
+     * */
+    show(): void {
+        $('body').prepend(this._label);
     }
 }

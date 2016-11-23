@@ -3,8 +3,8 @@
 old/
 bower_components/
 node_modules/
-assets/ts/*.js
-assets/ts/*.map
+**/*.js
+**/*.map
 
 build/css
 build/js

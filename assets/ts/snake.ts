@@ -3,18 +3,31 @@ import {Matrix} from "./matrix";
 import {Cell} from "./cell";
 import {configSnake} from "./configSnake";
 
-
+/**
+ * Class Snake
+ * */
 export class Snake {
-    directions = {
+    private _directions = {
         Up: new Position(-1, 0),
         Down: new Position(1, 0),
         Left: new Position(0, -1),
         Right: new Position(0, 1)
     };
 
-    direction = this.directions.Down;
-    body: Position[];
+    private _direction = this._directions.Down;
+    private body: Position[];
 
+    /**
+     * Create Snake
+     *
+     * @param startPosition { Position[] }
+     * @param matrix { Matrix }
+     * @param config { configSnake }
+     * @param callbacks { {
+                    gameOver: Function;
+                    snakeEat: Function;
+                } }
+     * */
     constructor(startPosition: Position[], private matrix: Matrix,
                 public config: configSnake,
                 public callbacks: {
@@ -24,12 +37,19 @@ export class Snake {
         this.body = startPosition;
     }
 
-    move(): Snake {
+
+    /**
+     * Move snake
+     * @access public
+     *
+     * @return { Snake }
+     * */
+    public move(): Snake {
         let head = this.body[this.body.length - 1];
         let newHead =
             new Position(
-                head.x + this.direction.x,
-                head.y + this.direction.y
+                head.x + this._direction.x,
+                head.y + this._direction.y
             );
 
         let cell: Cell = this.matrix.getCell(newHead);
@@ -72,10 +92,10 @@ export class Snake {
     }
 
     setDirection(dir: string): void {
-        let newDir, oldDir = this.direction;
-        if ((newDir = this.directions[dir]) != null) {
+        let newDir, oldDir = this._direction;
+        if ((newDir = this._directions[dir]) != null) {
             if (newDir.x + oldDir.x !== 0 && newDir.y + oldDir.y !== 0) {
-                this.direction = this.directions[dir];
+                this._direction = this._directions[dir];
             }
         }
     }
