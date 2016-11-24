@@ -1,0 +1,113 @@
+body {
+    background-color: #6BD152;
+}
+
+input {
+    width: 300px;
+    margin: 10px;
+}
+
+.main {
+    margin: 0 auto;
+}
+
+.matrix {
+    margin: 0 30px 30px;
+    float: left;
+    border-top: 1px solid #CCC;
+    border-left: 1px solid #CCC;
+    background-color: #6BD152;
+}
+
+.matrix div {
+    float: left;
+    width: 19px;
+    height: 19px;
+    border-bottom: 1px solid #CCC;
+    border-right: 1px solid #CCC;
+}
+
+.matrix .snake {
+    background-color: #FFF;
+    border-radius: 3px;
+    /*background-image: url("../img/snake.png");*/
+}
+
+.matrix .fruit {
+    background-image: url("../img/fruit.png");
+}
+
+.matrix .poison {
+    background-color: #1b6d85;
+    border-radius: 10px;
+}
+
+.panel {
+    margin: auto;
+    width: 400px;
+    background-color: #6BD152;
+    text-align: center;
+}
+
+.panel span {
+    margin-left: 10px;
+}
+
+.res {
+    margin: 10px;
+}
+
+.setting {
+    margin: auto;
+    padding: 30px;
+    width: 400px;
+    height: 300px;
+}
+
+.setting .row {
+    margin-top: 20px;
+}
+
+* {
+    font-family: "Algerian";
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.game-over {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 93px;
+    background-color: #285F28;
+    text-align: center;
+    padding: 25px;
+}
+
+#btn-view-record, #btn-back{
+    font-size: 20px;
+    position: absolute;
+    /*right: 10px;*/
+    top: 10px;
+}
+
+#btn-view-record{
+    right: 10px;
+}
+
+#btn-back{
+    left: 10px;
+}
+
+div.name, div.score, div.time {
+    cursor: pointer;
+}
+div.name:hover, div.score:hover, div.time:hover {
+    text-decoration: underline;
+}
+
+.div-record{
+    width: 600px;
+    margin: 0 auto;
+}
