@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "sourceMap": true
+  },
+  "files": [
+    "assets/ts/app.ts"
+  ],
+  "include": [
+    "assets/ts/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

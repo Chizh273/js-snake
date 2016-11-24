@@ -1,5 +1,6 @@
 # Snake #
 
-Apache 2.4
-PHP 5.6
-MySQL 5.5
+# TODO:
+    1. fix label btn
+    2. add main screen
+    3. add server(nodeJS) 
