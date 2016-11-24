@@ -68,7 +68,7 @@ gulp.task("js:ts", function() {
   return tsResult.js
     .on("error", notify.onError)
     .pipe(sourceMaps.write())
-    .pipe(gulp.dest('./'));
+    .pipe(gulp.dest('./assets/ts/'));
 });
 
 gulp.task("js:browserify", ['js:ts'], function() {

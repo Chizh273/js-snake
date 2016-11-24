@@ -6,11 +6,11 @@ export class configSnake {
     /**
      * Create configSnake
      *
-     * @param clsSnake { string } - class name snake
-     * @param clsFruit { string } - class name fruit
+     * @param clsSnake  { string } - class name snake
+     * @param clsFruit  { string } - class name fruit
      * @param clsPoison { string } - class name poison
-     * @param sizeGame { number } - size _matrix game
-     * @param speed { number }
+     * @param sizeGame  { number } - size matrix game
+     * @param speed     { number }
      * */
     constructor(public clsSnake: string,
                 public clsFruit: string,

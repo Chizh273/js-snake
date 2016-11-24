@@ -7,6 +7,8 @@ import {Cell} from "./cell";
  * Class Matrix
  * */
 export class Matrix {
+    private _matrix: Cell[][];
+
     private _matrixSizeWidth: number;
     private _matrixSizeHeight: number;
 
@@ -37,13 +39,19 @@ export class Matrix {
      * @return { void }
      * */
     public createMatrix(): void {
-        let matrixCells: JQuery[] = [];
+        this._matrix = [];
         for (let x = 0; x < this.row; x++) {
+            let cellJQuery: JQuery[] = [],
+                cells: Cell[] = [];
+
             for (let y = 0; y < this.col; y++) {
-                matrixCells.push(this._generateCell(x, y));
+                cellJQuery.push(this._generateCell(x, y));
+                cells.push(new Cell(cellJQuery[y]));
             }
+
+            this._matrix.push(cells);
+            this.$container.append(cellJQuery);
         }
-        this.$container.append(matrixCells);
     }
 
     /**
@@ -52,7 +60,7 @@ export class Matrix {
      *
      * @param col { number }
      * @param row { number }
-     * @return { JQuery } - JQuery element cell
+     * @return { JQuery } JQuery element cell
      * */
     private _generateCell(col: number, row: number): JQuery {
         return $('<div>')
@@ -74,24 +82,7 @@ export class Matrix {
      * @return { Cell }
      * */
     public getCell(cell: Position): Cell {
-        return new Cell(
-            this.$container
-                .find(`[data-col=${cell.x}][data-row=${cell.y}]`)
-        );
-    }
-
-    /**
-     * TODO: need review
-     * */
-    addClassToCell(cell: Position, className: string) {
-        this.getCell(cell).setClass(className);
-    }
-
-    /**
-     * TODO: need review
-     * */
-    removeClass(tail: Position) {
-        this.getCell(tail).removeClass();
+        return this._matrix[cell.x][cell.y];
     }
 
     /**

@@ -29,8 +29,8 @@ export class Snake {
                 } }
      * */
     constructor(startPosition: Position[], private matrix: Matrix,
-                public config: configSnake,
-                public callbacks: {
+                private config: configSnake,
+                private callbacks: {
                     gameOver: Function;
                     snakeEat: Function;
                 }) {
@@ -45,17 +45,12 @@ export class Snake {
      * @return { Snake }
      * */
     public move(): Snake {
-        let head = this.body[this.body.length - 1];
-        let newHead =
-            new Position(
-                head.x + this._direction.x,
-                head.y + this._direction.y
-            );
+        let head = this.body[this.body.length - 1],
+            newHead = new Position(head.x + this._direction.x, head.y + this._direction.y),
+            cell: Cell = this.matrix.getCell(newHead);
 
-        let cell: Cell = this.matrix.getCell(newHead);
         if (cell.length !== 0) {
             if (cell.hasClass(this.config.clsSnake)) {
-                //TODO: die
                 this.callbacks.gameOver();
             }
             else if (cell.hasClass(this.config.clsFruit)) {
@@ -67,30 +62,44 @@ export class Snake {
             }
             else {
                 this.body.push(newHead);
-                this.removeTail();
+                this._removeTail();
             }
         }
 
         return this;
     }
 
-    removeTail(): Snake {
+    /**
+     * Remove tail snake
+     * @access private
+     *
+     * @return { void }
+     * */
+    _removeTail(): void {
         let tail = this.body.shift();
-        this.matrix.removeClass(tail);
-
-        return this;
+        this.matrix.getCell(tail).removeClass();
     }
 
-
+    /**
+     * Display snake
+     * @access public
+     *
+     * @return { Snake }
+     * */
     displaySnake(): Snake {
         for (let cell of this.body) {
-            //TODO: class 'snake' move to config
-            this.matrix.addClassToCell(cell, 'snake');
+            this.matrix.getCell(cell).setClass(this.config.clsSnake);
         }
 
         return this;
     }
 
+    /**
+     * Set direction snake
+     * @access public
+     *
+     * @return { void }
+     * */
     setDirection(dir: string): void {
         let newDir, oldDir = this._direction;
         if ((newDir = this._directions[dir]) != null) {
