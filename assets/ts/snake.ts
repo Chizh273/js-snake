@@ -37,7 +37,6 @@ export class Snake {
         this.body = startPosition;
     }
 
-
     /**
      * Move snake
      * @access public
@@ -50,46 +49,20 @@ export class Snake {
             cell: Cell = this.matrix.getCell(newHead);
 
         if (cell.length !== 0) {
-            if (cell.hasClass(this.config.clsSnake)) {
+            if (cell.hasClass(this.config.clsSnake)
+                || cell.hasClass(this.config.clsPoison)) {
                 this.callbacks.gameOver();
             }
             else if (cell.hasClass(this.config.clsFruit)) {
                 this.body.push(newHead);
                 this.callbacks.snakeEat();
             }
-            else if (cell.hasClass(this.config.clsPoison)) {
-                this.callbacks.gameOver();
-            }
             else {
                 this.body.push(newHead);
                 this._removeTail();
             }
         }
-
-        return this;
-    }
-
-    /**
-     * Remove tail snake
-     * @access private
-     *
-     * @return { void }
-     * */
-    _removeTail(): void {
-        let tail = this.body.shift();
-        this.matrix.getCell(tail).removeClass();
-    }
-
-    /**
-     * Display snake
-     * @access public
-     *
-     * @return { Snake }
-     * */
-    displaySnake(): Snake {
-        for (let cell of this.body) {
-            this.matrix.getCell(cell).setClass(this.config.clsSnake);
-        }
+        this._displaySnake();
 
         return this;
     }
@@ -100,7 +73,7 @@ export class Snake {
      *
      * @return { void }
      * */
-    setDirection(dir: string): void {
+    public setDirection(dir: string): void {
         let newDir, oldDir = this._direction;
         if ((newDir = this._directions[dir]) != null) {
             if (newDir.x + oldDir.x !== 0 && newDir.y + oldDir.y !== 0) {
@@ -108,4 +81,28 @@ export class Snake {
             }
         }
     }
+
+    /**
+     * Remove tail snake
+     * @access private
+     *
+     * @return { void }
+     * */
+    private _removeTail(): void {
+        let tail = this.body.shift();
+        this.matrix.getCell(tail).removeClass();
+    }
+
+    /**
+     * Display snake
+     * @access private
+     *
+     * @return { void }
+     * */
+    private _displaySnake(): void {
+        for (let cell of this.body) {
+            this.matrix.getCell(cell).setClass(this.config.clsSnake);
+        }
+    }
+
 }
