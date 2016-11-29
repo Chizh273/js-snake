@@ -25,7 +25,7 @@ export class Cell {
      * @param className{ string }
      * @return { boolean }
      * */
-    hasClass(className: string): boolean {
+    public hasClass(className: string): boolean {
         return this.cell.hasClass(className);
     }
 
@@ -36,7 +36,7 @@ export class Cell {
      * @param className { string }
      * @return { void }
      * */
-    setClass(className: string): void {
+    public setClass(className: string): void {
         this.cell.addClass(className);
     }
 
@@ -47,7 +47,7 @@ export class Cell {
      * @param className { string }
      * @return { void }
      * */
-    removeClass(className: string = null): void {
+    public removeClass(className: string = null): void {
         if (className) {
             this.cell.removeClass(className);
         }

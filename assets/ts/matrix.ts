@@ -1,8 +1,7 @@
 /// <reference path="../../typings/tsd.d.ts" />
-
-
 import {Position} from './position';
 import {Cell} from "./cell";
+
 /**
  * Class Matrix
  * */
@@ -55,6 +54,18 @@ export class Matrix {
     }
 
     /**
+     * Get cell by Position
+     * @access public
+     *
+     * @param cell { Position } - position cell
+     * @return { Cell }
+     * */
+    public getCell(cell: Position): Cell {
+        cell = this._validateCell(cell);
+        return this._matrix[cell.x][cell.y];
+    }
+
+    /**
      * Generate Cell
      * @access private
      *
@@ -75,14 +86,18 @@ export class Matrix {
     }
 
     /**
-     * Get cell by Position
-     * @access public
+     * Validation cell
+     * @access private
      *
-     * @param cell { Position } - position cell
-     * @return { Cell }
+     * @param cell{ Position }
+     * @return { Position }
      * */
-    public getCell(cell: Position): Cell {
-        return this._matrix[cell.x][cell.y];
+    private _validateCell(cell: Position): Position {
+        if (cell.x >= this.col) cell.x = 0;
+        if (cell.x < 0) cell.x = this.col - 1;
+        if (cell.y >= this.row) cell.y = 0;
+        if (cell.y < 0) cell.y = this.row - 1
+        return cell;
     }
 
     /**

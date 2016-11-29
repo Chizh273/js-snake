@@ -29,6 +29,56 @@ export class GameSnake {
     }
 
     /**
+     * Restart game
+     *
+     * @return { void }
+     * */
+    public restart(): void {
+        this._score = 0;
+        this._scoreLabel.setText(`Score: ${this._score}`);
+
+        this.start();
+    }
+
+    /**
+     * Start game
+     * @access public
+     *
+     * @return { void }
+     * */
+    public start(): void {
+        this._create();
+        clearInterval(this._intervalGame);
+        this._intervalGame = setInterval(() => {
+            this._snake.move();
+        }, this.config.speed);
+    }
+
+    /**
+     * Set direction snake
+     * @access public
+     *
+     * @param event { JQueryKeyEventObject }
+     * @return { void }
+     * */
+    public setDirection(event: JQueryKeyEventObject): void {
+        switch (event.which) {
+            case 38:
+                this._snake.setDirection('Up');
+                break;
+            case 40:
+                this._snake.setDirection('Down');
+                break;
+            case 39:
+                this._snake.setDirection('Right');
+                break;
+            case 37:
+                this._snake.setDirection('Left');
+                break;
+        }
+    }
+
+    /**
      * Create game
      * @access private
      *
@@ -57,62 +107,12 @@ export class GameSnake {
     }
 
     /**
-     * Restart game
-     *
-     * @return { void }
-     * */
-    restart(): void {
-        this._score = 0;
-        this._scoreLabel.setText(`Score: ${this._score}`);
-
-        this.start();
-    }
-
-    /**
-     * Start game
-     * @access public
-     *
-     * @return { void }
-     * */
-    start(): void {
-        this._create();
-        clearInterval(this._intervalGame);
-        this._intervalGame = setInterval(() => {
-            this._snake.displaySnake().move();
-        }, this.config.speed);
-    }
-
-    /**
-     * Set _direction snake
-     * @access public
-     *
-     * @param event { JQueryKeyEventObject }
-     * @return { void }
-     * */
-    setDirection(event: JQueryKeyEventObject): void {
-        switch (event.which) {
-            case 38:
-                this._snake.setDirection('Up');
-                break;
-            case 40:
-                this._snake.setDirection('Down');
-                break;
-            case 39:
-                this._snake.setDirection('Right');
-                break;
-            case 37:
-                this._snake.setDirection('Left');
-                break;
-        }
-    }
-
-    /**
      * Stop game
      * @access private
      *
      * @return { void }
      * */
-    _gameOver():void {
+    private _gameOver(): void {
         clearInterval(this._intervalGame);
 
         let l = new Label(`Game over! You score: ${this._score}`, 'game-over');
@@ -127,7 +127,7 @@ export class GameSnake {
      *
      * @return { void }
      * */
-    _generateFruit():void {
+    private _generateFruit(): void {
         let cell: Cell;
         while ((cell = this._getRandomCell()) && this._checkCellToMakeFruit(cell)) {
         }
@@ -140,7 +140,7 @@ export class GameSnake {
      *
      * @return { boolean }
      * */
-    _checkCellToMakeFruit(cell: Cell): boolean {
+    private _checkCellToMakeFruit(cell: Cell): boolean {
         return cell.hasClass(this.config.clsPoison) ||
             cell.hasClass(this.config.clsSnake) ||
             cell.hasClass(this.config.clsFruit);
@@ -152,7 +152,7 @@ export class GameSnake {
      *
      * @return { Cell }
      * */
-    _getRandomCell(): Cell {
+    private _getRandomCell(): Cell {
         return this._matrix.getCell(
             new Position(
                 _.random(0, this.config.sizeGame - 1),

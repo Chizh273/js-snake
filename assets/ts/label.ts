@@ -28,7 +28,7 @@ export class Label {
      * @param text { string } - text to label
      * @return { void }
      * */
-    setText(text: string): void {
+    public setText(text: string): void {
         this._label.find('h1').text(text);
     }
 
@@ -38,7 +38,7 @@ export class Label {
      *
      * @return { void }
      * */
-    show(): void {
+    public show(): void {
         $('body').prepend(this._label);
     }
 }
