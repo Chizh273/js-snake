@@ -1,4 +1,3 @@
-/// <reference path="../../typings/tsd.d.ts" />
 import {Position} from './position';
 import {Cell} from "./cell";
 
@@ -93,10 +92,19 @@ export class Matrix {
      * @return { Position }
      * */
     private _validateCell(cell: Position): Position {
-        if (cell.x >= this.col) cell.x = 0;
-        if (cell.x < 0) cell.x = this.col - 1;
-        if (cell.y >= this.row) cell.y = 0;
-        if (cell.y < 0) cell.y = this.row - 1
+        if (cell.x >= this.col) {
+            cell.x = 0;
+        }
+        if (cell.y >= this.row) {
+            cell.y = 0;
+        }
+        if (cell.x < 0) {
+            cell.x = this.col - 1;
+        }
+        if (cell.y < 0) {
+            cell.y = this.row - 1;
+        }
+
         return cell;
     }
 

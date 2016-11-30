@@ -1,5 +1,3 @@
-/// <reference path="../../typings/tsd.d.ts" />
-
 import {Snake} from "./snake";
 import {Position} from "./position";
 import {Matrix} from "./matrix";

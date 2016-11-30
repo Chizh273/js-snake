@@ -1,6 +1,3 @@
-/// <reference path="../../typings/tsd.d.ts" />
-
-
 import {GameSnake} from "./gameSnake";
 import {configSnake} from "./configSnake";
 
