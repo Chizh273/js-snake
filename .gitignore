@@ -1,11 +1,11 @@
 .idea/
-
+.vscode/
 old/
 bower_components/
 node_modules/
 assets/ts/*.js
 assets/ts/*.map
-
+build/browserify
 build/css
 build/js
 build/fonts

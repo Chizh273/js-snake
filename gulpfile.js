@@ -68,11 +68,11 @@ gulp.task("js:ts", function() {
   return tsResult.js
     .on("error", notify.onError)
     .pipe(sourceMaps.write())
-    .pipe(gulp.dest('./assets/ts/'));
+    .pipe(gulp.dest('./build/browserify/'));
 });
 
 gulp.task("js:browserify", ['js:ts'], function() {
-  return browserify('./assets/ts/app.js', { debug: true })
+  return browserify('./build/browserify/app.js', { debug: true })
     .bundle().on('error', function(error) {
       var args = Array.prototype.slice.call(arguments);
       notify.onError('Browserify error: <%= error.message %>').apply(this, args);
@@ -93,7 +93,7 @@ gulp.task("sync", function() {
 
 });
 
-gulp.task("watch", ["bower", "sass", 'sync'], function() {
+gulp.task("watch", ["bower", "js", "sass", 'sync'], function() {
   gulp.watch("./assets/scss/**/*.s*ss", ["sass", browserSync.reload]);
   gulp.watch("./assets/ts/**/*.ts", ["js", browserSync.reload]);
   gulp.watch("./build/index.html", browserSync.reload);

@@ -1,0 +1,19 @@
+div.game {
+  margin: 40px 10px;
+  border-top: 1px solid $matrix-border-color;
+  border-left: 1px solid $matrix-border-color;
+
+  div {
+    border-right: 1px solid $matrix-border-color;
+    border-bottom: 1px solid $matrix-border-color;
+    float: left;
+
+    &.fruit {
+      background-color: $matrix-fruit-bg;
+      border-radius: 10px;
+    }
+    &.snake {
+      background-color: $matrix-snake-bg;
+    }
+  }
+}
