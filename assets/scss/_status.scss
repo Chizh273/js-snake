@@ -1,0 +1,17 @@
+@import "../../bower_components/bourbon/app/assets/stylesheets/bourbon";
+
+div.status {
+
+  div.status {
+    &-score {
+      padding: 40px;
+      color: #ff0;
+      h1 {
+        font-face: modular-scale(2);
+        float:left;
+
+      }
+
+    }
+  }
+}

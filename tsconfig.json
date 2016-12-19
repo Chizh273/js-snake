@@ -5,7 +5,6 @@
     "sourceMap": true
   },
   "files": [
-    "assets/ts/*.ts",
     "typings/tsd.d.ts"
   ],
   "include": [

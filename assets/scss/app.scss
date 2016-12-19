@@ -1,8 +1,8 @@
-
-@import "../../bower_components/sanitize-css/sanitize.css";
-
-
+//Vendor
+@import "../../bower_components/sanitize-css/sanitize";
+@import "../../bower_components/bourbon/app/assets/stylesheets/bourbon";
+//Custom
 @import "variable";
 @import "main";
 @import "matrix";
-@import "label";
+@import "status";

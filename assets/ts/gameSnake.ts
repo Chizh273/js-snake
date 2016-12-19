@@ -3,7 +3,7 @@ import {Position} from "./position";
 import {Matrix} from "./matrix";
 import {configSnake} from "./configSnake";
 import {Cell} from "./cell";
-import {Label} from "./label";
+import {Score} from "./score";
 
 /**
  * Class GameSnake
@@ -12,18 +12,19 @@ export class GameSnake {
     private _matrix: Matrix;
     private _snake: Snake;
     private _intervalGame;
-    private _score: number = 0;
-    private _scoreLabel: Label = new Label(`Score: ${this._score}`, 'score');
-
+    private _score: Score;
 
     /**
      * Create GameSnake
      *
      * @param elMatrix { JQuery }
+     * @param elStatus { JQuery }
      * @param config { configSnake }
      * */
-    constructor(public elMatrix: JQuery, public config: configSnake) {
-        this._scoreLabel.show();
+    constructor(protected elMatrix: JQuery,
+                protected elStatus: JQuery,
+                public config: configSnake) {
+        this._score = new Score(elStatus);
     }
 
     /**
@@ -32,9 +33,6 @@ export class GameSnake {
      * @return { void }
      * */
     public restart(): void {
-        this._score = 0;
-        this._scoreLabel.setText(`Score: ${this._score}`);
-
         this.start();
     }
 
@@ -45,6 +43,7 @@ export class GameSnake {
      * @return { void }
      * */
     public start(): void {
+        this._score.resetScore();
         this._create();
         clearInterval(this._intervalGame);
         this._intervalGame = setInterval(() => {
@@ -88,11 +87,11 @@ export class GameSnake {
         this._snake = new Snake(
             [new Position(1, 1), new Position(1, 2), new Position(1, 3)],
             this._matrix, this.config, {
-                snakeEat: ()=> {
+                snakeEat: () => {
                     this._generateFruit()
-                    this._scoreLabel.setText(`Score: ${++this._score}`);
+                    this._score.updateScore();
                 },
-                gameOver: ()=> {
+                gameOver: () => {
                     this._gameOver()
                 }
             });
@@ -112,9 +111,6 @@ export class GameSnake {
      * */
     private _gameOver(): void {
         clearInterval(this._intervalGame);
-
-        let l = new Label(`Game over! You score: ${this._score}`, 'game-over');
-        l.show();
 
         console.log('game over');
     }
