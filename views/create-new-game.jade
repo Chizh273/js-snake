@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  form.form-game
+    .row
+      h3 Cols:
+        input(type="text", name="col")
+    .row
+      h3 Rows:
+        input(type="text", name="row")
+    .row
+      h3 Enable positions?
+      label Yes
+        input(type="radio", name="position" value="Yes")
+      label No
+        input(type="radio", name="position" value="No")
+    .row
+      button.btn-start Start

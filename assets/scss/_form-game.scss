@@ -1,0 +1,22 @@
+form.form-game {
+  margin: auto;
+  @include display(flex);
+  @include flex-direction(column);
+  @include align-content(space-between);
+  @include justify-content(center);
+  @include flex-wrap(wrap);
+  .row {
+    margin: 5px 0;
+    h3 {
+      font-size: 1.4rem;
+    }
+    input[type="text"] {
+      border: 1px solid #555;
+      box-shadow: 1px 1px 2px #443;
+      margin-left: 10px;
+    }
+    .btn-start {
+      @include button(#898, simple);
+    }
+  }
+}

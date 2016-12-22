@@ -3,6 +3,7 @@ import * as morgan from "morgan";
 import * as path from "path";
 
 import mainRoute from "./router/main";
+import gameRoute from "./router/game";
 
 let app = express();
 
@@ -13,6 +14,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use("/", mainRoute)
+app.use("/", gameRoute)
 
 app.listen(3000, err => {
     if (err) throw err;
