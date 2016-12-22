@@ -1,3 +1,36 @@
 body {
+  font-family: PT-sans, Arial;
   background-color: #334;
+  width: 100%;
+  height: 100%;
+}
+
+.main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  ul.menu {
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style-type: none;
+      text-align: center;
+      a {
+        text-decoration: none;
+        font-size: 1.5em;
+        color: #121;
+      }
+    }
+  }
+
+  h1 {
+    font-style: italic;
+    font-size: 2.5rem;
+    margin: 0 .2em;
+    color: #122;
+  }
 }

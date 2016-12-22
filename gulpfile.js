@@ -15,16 +15,43 @@ const gulp             = require("gulp"),
 
 var tsProject = ts.createProject('tsconfig.json');
 
-gulp.task("bower:js", function() {
+gulp.task("vendor:js", function() {
   return gulp.src([
-    "./bower_components/jquery/dist/jquery.js",
-    "./bower_components/underscore/underscore.js"
+    "./node_modules/jquery/dist/jquery.js",
+    "./node_modules/underscore/underscore.js"
   ])
-    .pipe(gulp.dest("./build/js"))
+    .pipe(gulp.dest("./public/js"))
 });
+
+gulp.task("js:ts", function() {
+  var tsResult = tsProject.src()
+    .pipe(sourceMaps.init())
+    .pipe(tsProject());
+
+  return tsResult.js
+    .on("error", notify.onError)
+    .pipe(sourceMaps.write())
+    .pipe(gulp.dest('./public/browserify/'));
+});
+
+gulp.task("js:browserify", ['js:ts'], function() {
+  return browserify('./public/browserify/app.js', {
+    debug: true
+  })
+    .bundle().on('error', function(error) {
+      var args = Array.prototype.slice.call(arguments);
+      notify.onError('Browserify error: <%= error.message %>').apply(this, args);
+      this.emit("end");
+    })
+    .pipe(source('app.js'))
+    .pipe(gulp.dest('./public/js'))
+});
+
+gulp.task("js", ["vendor:js", "js:browserify"]);
 
 gulp.task("sass", function() {
   return gulp.src(['./assets/scss/app.scss'])
+    .pipe(sourceMaps.init())
     .pipe(plumber(({
       errorHandler: notify.onError('SASS error: <%= error.message %>')
     })))
@@ -37,44 +64,19 @@ gulp.task("sass", function() {
       outputStyle   : 'nested',
     }))
     .pipe(sass.sync())
-    .pipe(gulp.dest('./build/css/'))
-});
-
-gulp.task("js:ts", function() {
-  var tsResult = tsProject.src()
-    .pipe(sourceMaps.init())
-    .pipe(tsProject());
-
-  return tsResult.js
-    .on("error", notify.onError)
     .pipe(sourceMaps.write())
-    .pipe(gulp.dest('./build/browserify/'));
-});
-
-gulp.task("js", ['js:ts'], function() {
-  return browserify('./build/browserify/app.js', {
-    debug: true
-  })
-    .bundle().on('error', function(error) {
-      var args = Array.prototype.slice.call(arguments);
-      notify.onError('Browserify error: <%= error.message %>').apply(this, args);
-      this.emit("end");
-    })
-    .pipe(source('app.js'))
-    .pipe(gulp.dest('./build/js'))
+    .pipe(gulp.dest('./public/css/'))
 });
 
 gulp.task("sync", function() {
   browserSync.init({
-    server: {
-      baseDir: "./build"
-    }
+    proxy: "localhost:3000"
   });
 
 });
 
-gulp.task("watch", ["bower:js", "js", "sass", 'sync'], function() {
+gulp.task("watch", ["js", "sass", 'sync'], function() {
   gulp.watch("./assets/scss/**/*.s*ss", ["sass", browserSync.reload]);
-  gulp.watch("./assets/ts/**/*.ts", ["js", browserSync.reload]);
-  gulp.watch("./build/index.html", browserSync.reload);
+  gulp.watch("./assets/ts/**/*.ts", ["js:browserify", browserSync.reload]);
+  gulp.watch("./views/**/*.jade", browserSync.reload);
 });
